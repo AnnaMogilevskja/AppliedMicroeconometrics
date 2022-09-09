@@ -1,0 +1,223 @@
+---
+title: "Assignment2"
+author: "483670 & 630516"
+date: "08/09/2022"
+output:
+  pdf_document:
+      includes:
+        in_header: "preamble.tex"
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(ggplot2, stargazer, lmtest, plm, 
+               sandwich, fixest, modelsummary, vtable, foreign, RCT)
+```
+
+```{r data, include=FALSE}
+data <- read.dta("searchperiod.dta")
+```
+
+# Q1
+
+The mean probability of having benefits in week 10 of those without search period is $73.6%$. For those with the search period treatment this is $57.2%$. For 
+```{r}
+prob10nosearch <- mean(data$benefits_week10[data$searchperiod==0])
+prob10search <- mean(data$benefits_week10[data$searchperiod==1])
+prob30nosearch <- mean(data$benefits_week30[data$searchperiod==0])
+prob30search <- mean(data$benefits_week30[data$searchperiod==1])
+```
+
+# Q2
+
+```{r 2}
+balance <- balance_table(data, "searchperiod")
+balance
+```
+
+#Q3
+
+```{r 3, results='asis'}
+
+m10b <- lm(benefits_week10 ~ searchperiod + sumincome_12monthsbefore+sumincome_24monthsbefore+age + female + children + partner + period2 +period3+period4 +location2+ location3+ location4+ location5+ educ_bachelormaster + educ_prepvocational + educ_unknown + educ_vocational, data = data)
+m10a <- lm(benefits_week10 ~ searchperiod, data = data)
+m30b <- lm(benefits_week30 ~ searchperiod, data = data)
+m30a <- lm(benefits_week30 ~ searchperiod + sumincome_12monthsbefore+sumincome_24monthsbefore+age + female + children + partner + period2 +period3+period4 +location2+ location3+ location4+ location5+ educ_bachelormaster + educ_prepvocational + educ_unknown + educ_vocational, data = data)
+
+stargazer(m10a, m10b, m30a, m30b, column.labels = c("", "Covariates","", "Covariates"),type = "latex",
+          title = "LPM for Benefits", header = FALSE)
+```
+
+#Q4
+
+```{r}
+probSearch = mean(data$searchperiod)
+ymin = 0
+ymax = 1
+# we can also jsut keep it in decimals
+```
+
+```{r 4, results='asis'}
+# Benefits after 10 weeks - No assumption
+Noass10_LB = prob10search*probSearch - prob10nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymax
+Noass10_UB = prob10search*probSearch - prob10nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymin
+
+Noass_LB=57.2*0.4563-73.6*0.5437+100*0.53437-100
+Noass_UB=57.2*0.4563-73.6*0.5437+100*0.53437
+
+# Benefits after 30 weeks - No assumption
+Noass30_LB = prob30search*probSearch - prob30nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymax
+Noass30_UB = prob30search*probSearch - prob30nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymin
+```
+
+
+#Q5
+
+```{r 5, results='asis'}
+# Benefits after 10 weeks - Roy Model
+Roy10_LB = -(prob10nosearch - ymin)* (1-probSearch)
+Roy10_UB =  (prob10search - ymin) * probSearch
+Roy_LB=-73.6*0.5437
+Roy_UB=57.2*0.4563
+
+# Benefits after 30 weeks - Roy Model
+Roy30_LB = -(prob30nosearch - ymin)* (1-probSearch)
+Roy30_UB =  (prob30search - ymin) * probSearch
+```
+
+#Q6
+
+```{r 6, results='asis'}
+# Benefits after 10 weeks - MTS/MTR
+MTS10_LB = prob10search - prob10nosearch
+MTS10_UB = prob10search*probSearch - prob10nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymin
+  
+MTS_LB=57.2*0.4563-73.6*0.5437+100*0.53437-100
+MTS_UB=0
+
+MTR10_LB = prob10search*probSearch - prob10nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymax
+MTR10_UB = 0
+
+MTR_LB=-16.4
+MTR_UB=57.2*0.4563-73.6*0.5437+100*0.53437
+
+MTSMTR10_LB = MTS10_LB
+MTSMTR10_UB = MTR10_UB
+
+MTSMTR_LB=-16.4
+MTSMTR_UB=0
+
+# Benefits after 30 weeks - MTS/MTR
+MTS30_LB = prob30search - prob30nosearch
+MTS30_UB = prob30search*probSearch - prob30nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymin
+  
+MTR30_LB = prob30search*probSearch - prob30nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymax
+MTR30_UB = 0
+
+MTSMTR30_LB = MTS30_LB
+MTSMTR30_UB = MTR30_UB
+```
+
+#Q7
+
+```{r}
+
+prob10search_bachelormaster = mean(data$benefits_week10[data$searchperiod==1 & data$educ_bachelormaster==1])
+prob10nosearch_bachelormaster = mean(data$benefits_week10[data$searchperiod==0 & data$educ_bachelormaster==1])
+
+prob10search_vocational = mean(data$benefits_week10[data$searchperiod==1 & data$educ_vocational==1])
+prob10nosearch_vocational = mean(data$benefits_week10[data$searchperiod==0 & data$educ_vocational==1])
+
+prob10search_prepvocational = mean(data$benefits_week10[data$searchperiod==1 & data$educ_prepvocational==1])
+prob10nosearch_prepvocational = mean(data$benefits_week10[data$searchperiod==0 & data$educ_prepvocational==1])
+
+# Goes against the MIV assumption!
+
+prob10search_primaryorless = mean(data$benefits_week10[data$searchperiod==1 & data$educ_primaryorless==1])
+prob10nosearch_primaryorless = mean(data$benefits_week10[data$searchperiod==0 & data$educ_primaryorless==1])
+
+# Does not tell us anything, so ignore
+prob10search_unknown = mean(data$benefits_week10[data$searchperiod==1 & data$educ_unknown==1])
+prob10nosearch_unknown = mean(data$benefits_week10[data$searchperiod==0 & data$educ_unknown==1])
+```
+
+As Vocational, Prepvocational and Primaryorless go against the MIV assumption, we reduce the MIV to whether a person has a bachelor or not, and check again whether the MIV assumption holds:
+```{r}
+prob10search_NObachelormaster = mean(data$benefits_week10[data$searchperiod==1 & data$educ_bachelormaster==0])
+prob10nosearch_NObachelormaster = mean(data$benefits_week10[data$searchperiod==0 & data$educ_bachelormaster==0])
+```
+
+Now, the MIV assumption holds as for both cases $d = \{0,1\}$, the probability of persons with a bachelor or master degree being still unemployed after 10 weeks is lower than the probability of persons without a bachelor or master degree. 
+```{r}
+prob_BachelorMaster = mean(data$educ_bachelormaster)
+```
+
+```{r}
+# MIV for Benefits after 10 weeks
+
+prob10nosearch_LB = (1-prob_BachelorMaster) * mean(data$benefits_week10[data$searchperiod==0 & data$educ_bachelormaster==0]) + prob_BachelorMaster * max(mean(data$benefits_week10[data$searchperiod==0 & data$educ_bachelormaster==0]), mean(data$benefits_week10[data$searchperiod==0 & data$educ_bachelormaster==1])) 
+prob10nosearch_UB = (1-prob_BachelorMaster) * min(mean(data$benefits_week10[data$searchperiod==0 & data$educ_bachelormaster==0]), mean(data$benefits_week10[data$searchperiod==0 & data$educ_bachelormaster==1])) + prob_BachelorMaster * mean(data$benefits_week10[data$searchperiod==0 & data$educ_bachelormaster==1])
+
+prob10search_LB = (1-prob_BachelorMaster) * mean(data$benefits_week10[data$searchperiod==1 & data$educ_bachelormaster==0]) + prob_BachelorMaster * max(mean(data$benefits_week10[data$searchperiod==1 & data$educ_bachelormaster==0]), mean(data$benefits_week10[data$searchperiod==1 & data$educ_bachelormaster==1])) 
+prob10search_UB = (1-prob_BachelorMaster) * min(mean(data$benefits_week10[data$searchperiod==1 & data$educ_bachelormaster==0]), mean(data$benefits_week10[data$searchperiod==1 & data$educ_bachelormaster==1])) + prob_BachelorMaster * mean(data$benefits_week10[data$searchperiod==1 & data$educ_bachelormaster==1])
+
+MIV10_LB = prob10search_LB - prob10nosearch_LB
+
+MIV10_UB = prob10search_UB - prob10nosearch_UB
+```
+
+```{r}
+# MIV for Benefits after 30 weeks
+
+prob30nosearch_LB = (1-prob_BachelorMaster) * mean(data$benefits_week30[data$searchperiod==0 & data$educ_bachelormaster==0]) + prob_BachelorMaster * max(mean(data$benefits_week30[data$searchperiod==0 & data$educ_bachelormaster==0]), mean(data$benefits_week30[data$searchperiod==0 & data$educ_bachelormaster==1])) 
+prob30nosearch_UB = (1-prob_BachelorMaster) * min(mean(data$benefits_week30[data$searchperiod==0 & data$educ_bachelormaster==0]), mean(data$benefits_week30[data$searchperiod==0 & data$educ_bachelormaster==1])) + prob_BachelorMaster * mean(data$benefits_week30[data$searchperiod==0 & data$educ_bachelormaster==1])
+
+prob30search_LB = (1-prob_BachelorMaster) * mean(data$benefits_week30[data$searchperiod==1 & data$educ_bachelormaster==0]) + prob_BachelorMaster * max(mean(data$benefits_week30[data$searchperiod==1 & data$educ_bachelormaster==0]), mean(data$benefits_week30[data$searchperiod==1 & data$educ_bachelormaster==1])) 
+prob30search_UB = (1-prob_BachelorMaster) * min(mean(data$benefits_week30[data$searchperiod==1 & data$educ_bachelormaster==0]), mean(data$benefits_week30[data$searchperiod==1 & data$educ_bachelormaster==1])) + prob_BachelorMaster * mean(data$benefits_week30[data$searchperiod==1 & data$educ_bachelormaster==1])
+
+MIV30_LB = prob30search_LB - prob30nosearch_LB
+
+MIV30_UB = prob30search_UB - prob30nosearch_UB
+```
+
+```{r}
+# Dataframe with all bounds for benefits after 10 weeks
+Model <- c('No Assumptions', 'Roy Model', 'MTS', 'MTR', 'MTS+MTR', 'MIV')
+Lowerbound <- c(Noass10_LB, Roy10_LB, MTS10_LB, MTR10_LB, MTSMTR10_LB, MIV10_LB)
+Upperbound <- c(Noass10_UB, Roy10_UB, MTS10_UB, MTR10_UB, MTSMTR10_UB, MIV10_UB)
+
+bounds10 <- data.frame(Model, Lowerbound, Upperbound)
+bounds10
+
+# Dataframe with all bounds for benefits after 30 weeks
+Model <- c('No Assumptions', 'Roy Model', 'MTS', 'MTR', 'MTS+MTR', 'MIV')
+Lowerbound <- c(Noass30_LB, Roy30_LB, MTS30_LB, MTR30_LB, MTSMTR30_LB, MIV30_LB)
+Upperbound <- c(Noass30_UB, Roy30_UB, MTS30_UB, MTR30_UB, MTSMTR30_UB, MIV30_UB)
+
+bounds30 <- data.frame(Model, Lowerbound, Upperbound)
+bounds30
+```
+```{r}
+bounds10$Model  = factor(bounds10$Model, levels=c("No Assumptions", "Roy Model", "MTS", "MTR", "MTS+MTR", "MIV"))
+library(ggplot2)
+library(reshape2)
+d <- melt(bounds10, id.vars="Model", value.name = "TreatmentEffect")
+
+# Everything on the same plot
+ggplot(d, aes(Model, TreatmentEffect, col=variable)) + 
+  geom_line( color="grey") +
+  geom_point(shape="-", color="#69b3a2", size=15) +
+  stat_smooth() +
+  geom_hline(yintercept=0)
+```
+
+
+```{r 7, results='asis'}
+m10b <- lm(benefits_week10 ~ searchperiod + educ_bachelormaster + educ_prepvocational + educ_unknown + educ_vocational, data = data)
+m30a <- lm(benefits_week30 ~ searchperiod + educ_bachelormaster + educ_prepvocational + educ_unknown + educ_vocational, data = data)
+
+stargazer(m10a, m10b, m30a, m30b,type = "latex",
+         title = "LPM for Benefits", header = FALSE)
+```
+

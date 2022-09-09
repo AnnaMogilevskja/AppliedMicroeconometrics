@@ -1,0 +1,548 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Assignment2},
+  pdfauthor={483670 \& 630516},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{lscape}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Assignment2}
+\author{483670 \& 630516}
+\date{08/09/2022}
+
+\begin{document}
+\maketitle
+
+\hypertarget{q1}{%
+\section{Q1}\label{q1}}
+
+The mean probability of having benefits in week 10 of those without
+search period is \(73.6%
+\). For those with the search period treatment this is \(57.2%
+\). For
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prob10nosearch }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0}\NormalTok{])}
+\NormalTok{prob10search }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+\NormalTok{prob30nosearch }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0}\NormalTok{])}
+\NormalTok{prob30search }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{q2}{%
+\section{Q2}\label{q2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{balance }\OtherTok{\textless{}{-}} \FunctionTok{balance\_table}\NormalTok{(data, }\StringTok{"searchperiod"}\NormalTok{)}
+\NormalTok{balance}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 22 x 4
+##    variables1          Media_control1 Media_trat1 p_value1
+##    <chr>                        <dbl>       <dbl>    <dbl>
+##  1 age                        39.9         37.3   1.06e- 9
+##  2 benefits_week10             0.736        0.572 2.61e-12
+##  3 benefits_week30             0.540        0.414 2.75e- 7
+##  4 children                    0.164        0.114 3.70e- 3
+##  5 educ_bachelormaster         0.264        0.267 8.90e- 1
+##  6 educ_prepvocational         0.218        0.2   3.76e- 1
+##  7 educ_primaryorless          0.130        0.149 2.85e- 1
+##  8 educ_unknown                0.0144       0.05  5.99e- 5
+##  9 educ_vocational             0.373        0.334 9.48e- 2
+## 10 female                      0.397        0.372 3.01e- 1
+## # ... with 12 more rows
+\end{verbatim}
+
+\#Q3
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m10b }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(benefits\_week10 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ searchperiod }\SpecialCharTok{+}\NormalTok{ sumincome\_12monthsbefore}\SpecialCharTok{+}\NormalTok{sumincome\_24monthsbefore}\SpecialCharTok{+}\NormalTok{age }\SpecialCharTok{+}\NormalTok{ female }\SpecialCharTok{+}\NormalTok{ children }\SpecialCharTok{+}\NormalTok{ partner }\SpecialCharTok{+}\NormalTok{ period2 }\SpecialCharTok{+}\NormalTok{period3}\SpecialCharTok{+}\NormalTok{period4 }\SpecialCharTok{+}\NormalTok{location2}\SpecialCharTok{+}\NormalTok{ location3}\SpecialCharTok{+}\NormalTok{ location4}\SpecialCharTok{+}\NormalTok{ location5}\SpecialCharTok{+}\NormalTok{ educ\_bachelormaster }\SpecialCharTok{+}\NormalTok{ educ\_prepvocational }\SpecialCharTok{+}\NormalTok{ educ\_unknown }\SpecialCharTok{+}\NormalTok{ educ\_vocational, }\AttributeTok{data =}\NormalTok{ data)}
+\NormalTok{m10a }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(benefits\_week10 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ searchperiod, }\AttributeTok{data =}\NormalTok{ data)}
+\NormalTok{m30b }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(benefits\_week30 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ searchperiod, }\AttributeTok{data =}\NormalTok{ data)}
+\NormalTok{m30a }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(benefits\_week30 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ searchperiod }\SpecialCharTok{+}\NormalTok{ sumincome\_12monthsbefore}\SpecialCharTok{+}\NormalTok{sumincome\_24monthsbefore}\SpecialCharTok{+}\NormalTok{age }\SpecialCharTok{+}\NormalTok{ female }\SpecialCharTok{+}\NormalTok{ children }\SpecialCharTok{+}\NormalTok{ partner }\SpecialCharTok{+}\NormalTok{ period2 }\SpecialCharTok{+}\NormalTok{period3}\SpecialCharTok{+}\NormalTok{period4 }\SpecialCharTok{+}\NormalTok{location2}\SpecialCharTok{+}\NormalTok{ location3}\SpecialCharTok{+}\NormalTok{ location4}\SpecialCharTok{+}\NormalTok{ location5}\SpecialCharTok{+}\NormalTok{ educ\_bachelormaster }\SpecialCharTok{+}\NormalTok{ educ\_prepvocational }\SpecialCharTok{+}\NormalTok{ educ\_unknown }\SpecialCharTok{+}\NormalTok{ educ\_vocational, }\AttributeTok{data =}\NormalTok{ data)}
+
+\FunctionTok{stargazer}\NormalTok{(m10a, m10b, m30a, m30b, }\AttributeTok{column.labels =} \FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"Covariates"}\NormalTok{,}\StringTok{""}\NormalTok{, }\StringTok{"Covariates"}\NormalTok{),}\AttributeTok{type =} \StringTok{"latex"}\NormalTok{,}
+          \AttributeTok{title =} \StringTok{"LPM for Benefits"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[!htbp] \centering 
+  \caption{LPM for Benefits} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-5} 
+\\[-1.8ex] & \multicolumn{2}{c}{benefits\_week10} & \multicolumn{2}{c}{benefits\_week30} \\ 
+ &  & Covariates &  & Covariates \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
+\hline \\[-1.8ex] 
+ searchperiod & $-$0.164$^{***}$ & $-$0.143$^{***}$ & $-$0.099$^{***}$ & $-$0.126$^{***}$ \\ 
+  & (0.023) & (0.024) & (0.025) & (0.024) \\ 
+  & & & & \\ 
+ sumincome\_12monthsbefore &  & 0.0004 & $-$0.022 &  \\ 
+  &  & (0.027) & (0.028) &  \\ 
+  & & & & \\ 
+ sumincome\_24monthsbefore &  & $-$0.009 & $-$0.005 &  \\ 
+  &  & (0.014) & (0.014) &  \\ 
+  & & & & \\ 
+ age &  & 0.001 & 0.004$^{***}$ &  \\ 
+  &  & (0.001) & (0.001) &  \\ 
+  & & & & \\ 
+ female &  & $-$0.010 & $-$0.028 &  \\ 
+  &  & (0.024) & (0.026) &  \\ 
+  & & & & \\ 
+ children &  & $-$0.037 & 0.002 &  \\ 
+  &  & (0.037) & (0.040) &  \\ 
+  & & & & \\ 
+ partner &  & 0.056 & 0.078$^{*}$ &  \\ 
+  &  & (0.040) & (0.043) &  \\ 
+  & & & & \\ 
+ period2 &  & 0.008 & 0.045 &  \\ 
+  &  & (0.033) & (0.034) &  \\ 
+  & & & & \\ 
+ period3 &  & 0.049 & 0.026 &  \\ 
+  &  & (0.032) & (0.033) &  \\ 
+  & & & & \\ 
+ period4 &  & $-$0.049 & $-$0.070$^{**}$ &  \\ 
+  &  & (0.033) & (0.035) &  \\ 
+  & & & & \\ 
+ location2 &  & 0.026 & $-$0.007 &  \\ 
+  &  & (0.040) & (0.042) &  \\ 
+  & & & & \\ 
+ location3 &  & $-$0.006 & 0.031 &  \\ 
+  &  & (0.036) & (0.038) &  \\ 
+  & & & & \\ 
+ location4 &  & $-$0.065 & $-$0.027 &  \\ 
+  &  & (0.042) & (0.045) &  \\ 
+  & & & & \\ 
+ location5 &  & $-$0.00005 & $-$0.048 &  \\ 
+  &  & (0.043) & (0.045) &  \\ 
+  & & & & \\ 
+ educ\_bachelormaster &  & $-$0.058 & $-$0.149$^{***}$ &  \\ 
+  &  & (0.039) & (0.041) &  \\ 
+  & & & & \\ 
+ educ\_prepvocational &  & 0.047 & $-$0.011 &  \\ 
+  &  & (0.039) & (0.042) &  \\ 
+  & & & & \\ 
+ educ\_unknown &  & $-$0.347$^{***}$ & $-$0.303$^{***}$ &  \\ 
+  &  & (0.072) & (0.076) &  \\ 
+  & & & & \\ 
+ educ\_vocational &  & 0.034 & $-$0.033 &  \\ 
+  &  & (0.037) & (0.039) &  \\ 
+  & & & & \\ 
+ Constant & 0.736$^{***}$ & 0.739$^{***}$ & 0.476$^{***}$ & 0.540$^{***}$ \\ 
+  & (0.016) & (0.072) & (0.076) & (0.016) \\ 
+  & & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 1,665 & 1,663 & 1,663 & 1,665 \\ 
+R$^{2}$ & 0.030 & 0.067 & 0.065 & 0.016 \\ 
+Adjusted R$^{2}$ & 0.029 & 0.057 & 0.054 & 0.015 \\ 
+Residual Std. Error & 0.466 (df = 1663) & 0.460 (df = 1644) & 0.486 (df = 1644) & 0.496 (df = 1663) \\ 
+F Statistic & 50.771$^{***}$ (df = 1; 1663) & 6.565$^{***}$ (df = 18; 1644) & 6.304$^{***}$ (df = 18; 1644) & 26.592$^{***}$ (df = 1; 1663) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
+
+\#Q4
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{probSearch }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{searchperiod)}
+\NormalTok{ymin }\OtherTok{=} \DecValTok{0}
+\NormalTok{ymax }\OtherTok{=} \DecValTok{1}
+\CommentTok{\# we can also jsut keep it in decimals}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Benefits after 10 weeks {-} No assumption}
+\NormalTok{Noass10\_LB }\OtherTok{=}\NormalTok{ prob10search}\SpecialCharTok{*}\NormalTok{probSearch }\SpecialCharTok{{-}}\NormalTok{ prob10nosearch }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{+}\NormalTok{ (ymin }\SpecialCharTok{+}\NormalTok{ ymax) }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{{-}}\NormalTok{ ymax}
+\NormalTok{Noass10\_UB }\OtherTok{=}\NormalTok{ prob10search}\SpecialCharTok{*}\NormalTok{probSearch }\SpecialCharTok{{-}}\NormalTok{ prob10nosearch }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{+}\NormalTok{ (ymin }\SpecialCharTok{+}\NormalTok{ ymax) }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{{-}}\NormalTok{ ymin}
+
+\NormalTok{Noass\_LB}\OtherTok{=}\FloatTok{57.2}\SpecialCharTok{*}\FloatTok{0.4563{-}73.6}\SpecialCharTok{*}\FloatTok{0.5437}\SpecialCharTok{+}\DecValTok{100}\SpecialCharTok{*}\FloatTok{0.53437}\DecValTok{{-}100}
+\NormalTok{Noass\_UB}\OtherTok{=}\FloatTok{57.2}\SpecialCharTok{*}\FloatTok{0.4563{-}73.6}\SpecialCharTok{*}\FloatTok{0.5437}\SpecialCharTok{+}\DecValTok{100}\SpecialCharTok{*}\FloatTok{0.53437}
+
+\CommentTok{\# Benefits after 30 weeks {-} No assumption}
+\NormalTok{Noass30\_LB }\OtherTok{=}\NormalTok{ prob30search}\SpecialCharTok{*}\NormalTok{probSearch }\SpecialCharTok{{-}}\NormalTok{ prob30nosearch }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{+}\NormalTok{ (ymin }\SpecialCharTok{+}\NormalTok{ ymax) }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{{-}}\NormalTok{ ymax}
+\NormalTok{Noass30\_UB }\OtherTok{=}\NormalTok{ prob30search}\SpecialCharTok{*}\NormalTok{probSearch }\SpecialCharTok{{-}}\NormalTok{ prob30nosearch }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{+}\NormalTok{ (ymin }\SpecialCharTok{+}\NormalTok{ ymax) }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{{-}}\NormalTok{ ymin}
+\end{Highlighting}
+\end{Shaded}
+
+\#Q5
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Benefits after 10 weeks {-} Roy Model}
+\NormalTok{Roy10\_LB }\OtherTok{=} \SpecialCharTok{{-}}\NormalTok{(prob10nosearch }\SpecialCharTok{{-}}\NormalTok{ ymin)}\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch)}
+\NormalTok{Roy10\_UB }\OtherTok{=}\NormalTok{  (prob10search }\SpecialCharTok{{-}}\NormalTok{ ymin) }\SpecialCharTok{*}\NormalTok{ probSearch}
+\NormalTok{Roy\_LB}\OtherTok{=}\SpecialCharTok{{-}}\FloatTok{73.6}\SpecialCharTok{*}\FloatTok{0.5437}
+\NormalTok{Roy\_UB}\OtherTok{=}\FloatTok{57.2}\SpecialCharTok{*}\FloatTok{0.4563}
+
+\CommentTok{\# Benefits after 30 weeks {-} Roy Model}
+\NormalTok{Roy30\_LB }\OtherTok{=} \SpecialCharTok{{-}}\NormalTok{(prob30nosearch }\SpecialCharTok{{-}}\NormalTok{ ymin)}\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch)}
+\NormalTok{Roy30\_UB }\OtherTok{=}\NormalTok{  (prob30search }\SpecialCharTok{{-}}\NormalTok{ ymin) }\SpecialCharTok{*}\NormalTok{ probSearch}
+\end{Highlighting}
+\end{Shaded}
+
+\#Q6
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Benefits after 10 weeks {-} MTS/MTR}
+\NormalTok{MTS10\_LB }\OtherTok{=}\NormalTok{ prob10search }\SpecialCharTok{{-}}\NormalTok{ prob10nosearch}
+\NormalTok{MTS10\_UB }\OtherTok{=}\NormalTok{ prob10search}\SpecialCharTok{*}\NormalTok{probSearch }\SpecialCharTok{{-}}\NormalTok{ prob10nosearch }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{+}\NormalTok{ (ymin }\SpecialCharTok{+}\NormalTok{ ymax) }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{{-}}\NormalTok{ ymin}
+  
+\NormalTok{MTS\_LB}\OtherTok{=}\FloatTok{57.2}\SpecialCharTok{*}\FloatTok{0.4563{-}73.6}\SpecialCharTok{*}\FloatTok{0.5437}\SpecialCharTok{+}\DecValTok{100}\SpecialCharTok{*}\FloatTok{0.53437}\DecValTok{{-}100}
+\NormalTok{MTS\_UB}\OtherTok{=}\DecValTok{0}
+
+\NormalTok{MTR10\_LB }\OtherTok{=}\NormalTok{ prob10search}\SpecialCharTok{*}\NormalTok{probSearch }\SpecialCharTok{{-}}\NormalTok{ prob10nosearch }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{+}\NormalTok{ (ymin }\SpecialCharTok{+}\NormalTok{ ymax) }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{{-}}\NormalTok{ ymax}
+\NormalTok{MTR10\_UB }\OtherTok{=} \DecValTok{0}
+
+\NormalTok{MTR\_LB}\OtherTok{=}\SpecialCharTok{{-}}\FloatTok{16.4}
+\NormalTok{MTR\_UB}\OtherTok{=}\FloatTok{57.2}\SpecialCharTok{*}\FloatTok{0.4563{-}73.6}\SpecialCharTok{*}\FloatTok{0.5437}\SpecialCharTok{+}\DecValTok{100}\SpecialCharTok{*}\FloatTok{0.53437}
+
+\NormalTok{MTSMTR10\_LB }\OtherTok{=}\NormalTok{ MTS10\_LB}
+\NormalTok{MTSMTR10\_UB }\OtherTok{=}\NormalTok{ MTR10\_UB}
+
+\NormalTok{MTSMTR\_LB}\OtherTok{=}\SpecialCharTok{{-}}\FloatTok{16.4}
+\NormalTok{MTSMTR\_UB}\OtherTok{=}\DecValTok{0}
+
+\CommentTok{\# Benefits after 30 weeks {-} MTS/MTR}
+\NormalTok{MTS30\_LB }\OtherTok{=}\NormalTok{ prob30search }\SpecialCharTok{{-}}\NormalTok{ prob30nosearch}
+\NormalTok{MTS30\_UB }\OtherTok{=}\NormalTok{ prob30search}\SpecialCharTok{*}\NormalTok{probSearch }\SpecialCharTok{{-}}\NormalTok{ prob30nosearch }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{+}\NormalTok{ (ymin }\SpecialCharTok{+}\NormalTok{ ymax) }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{{-}}\NormalTok{ ymin}
+  
+\NormalTok{MTR30\_LB }\OtherTok{=}\NormalTok{ prob30search}\SpecialCharTok{*}\NormalTok{probSearch }\SpecialCharTok{{-}}\NormalTok{ prob30nosearch }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{+}\NormalTok{ (ymin }\SpecialCharTok{+}\NormalTok{ ymax) }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{probSearch) }\SpecialCharTok{{-}}\NormalTok{ ymax}
+\NormalTok{MTR30\_UB }\OtherTok{=} \DecValTok{0}
+
+\NormalTok{MTSMTR30\_LB }\OtherTok{=}\NormalTok{ MTS30\_LB}
+\NormalTok{MTSMTR30\_UB }\OtherTok{=}\NormalTok{ MTR30\_UB}
+\end{Highlighting}
+\end{Shaded}
+
+\#Q7
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prob10search\_bachelormaster }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+\NormalTok{prob10nosearch\_bachelormaster }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+
+\NormalTok{prob10search\_vocational }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_vocational}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+\NormalTok{prob10nosearch\_vocational }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_vocational}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+
+\NormalTok{prob10search\_prepvocational }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_prepvocational}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+\NormalTok{prob10nosearch\_prepvocational }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_prepvocational}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+
+\CommentTok{\# Goes against the MIV assumption!}
+
+\NormalTok{prob10search\_primaryorless }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_primaryorless}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+\NormalTok{prob10nosearch\_primaryorless }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_primaryorless}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+
+\CommentTok{\# Does not tell us anything, so ignore}
+\NormalTok{prob10search\_unknown }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_unknown}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+\NormalTok{prob10nosearch\_unknown }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_unknown}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+As Vocational, Prepvocational and Primaryorless go against the MIV
+assumption, we reduce the MIV to whether a person has a bachelor or not,
+and check again whether the MIV assumption holds:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prob10search\_NObachelormaster }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{])}
+\NormalTok{prob10nosearch\_NObachelormaster }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+Now, the MIV assumption holds as for both cases \(d = \{0,1\}\), the
+probability of persons with a bachelor or master degree being still
+unemployed after 10 weeks is lower than the probability of persons
+without a bachelor or master degree.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prob\_BachelorMaster }\OtherTok{=} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# MIV for Benefits after 10 weeks}
+
+\NormalTok{prob10nosearch\_LB }\OtherTok{=}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{prob\_BachelorMaster) }\SpecialCharTok{*} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]) }\SpecialCharTok{+}\NormalTok{ prob\_BachelorMaster }\SpecialCharTok{*} \FunctionTok{max}\NormalTok{(}\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]), }\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])) }
+\NormalTok{prob10nosearch\_UB }\OtherTok{=}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{prob\_BachelorMaster) }\SpecialCharTok{*} \FunctionTok{min}\NormalTok{(}\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]), }\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])) }\SpecialCharTok{+}\NormalTok{ prob\_BachelorMaster }\SpecialCharTok{*} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+
+\NormalTok{prob10search\_LB }\OtherTok{=}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{prob\_BachelorMaster) }\SpecialCharTok{*} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]) }\SpecialCharTok{+}\NormalTok{ prob\_BachelorMaster }\SpecialCharTok{*} \FunctionTok{max}\NormalTok{(}\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]), }\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])) }
+\NormalTok{prob10search\_UB }\OtherTok{=}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{prob\_BachelorMaster) }\SpecialCharTok{*} \FunctionTok{min}\NormalTok{(}\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]), }\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])) }\SpecialCharTok{+}\NormalTok{ prob\_BachelorMaster }\SpecialCharTok{*} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week10[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+
+\NormalTok{MIV10\_LB }\OtherTok{=}\NormalTok{ prob10search\_LB }\SpecialCharTok{{-}}\NormalTok{ prob10nosearch\_LB}
+
+\NormalTok{MIV10\_UB }\OtherTok{=}\NormalTok{ prob10search\_UB }\SpecialCharTok{{-}}\NormalTok{ prob10nosearch\_UB}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# MIV for Benefits after 30 weeks}
+
+\NormalTok{prob30nosearch\_LB }\OtherTok{=}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{prob\_BachelorMaster) }\SpecialCharTok{*} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]) }\SpecialCharTok{+}\NormalTok{ prob\_BachelorMaster }\SpecialCharTok{*} \FunctionTok{max}\NormalTok{(}\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]), }\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])) }
+\NormalTok{prob30nosearch\_UB }\OtherTok{=}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{prob\_BachelorMaster) }\SpecialCharTok{*} \FunctionTok{min}\NormalTok{(}\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]), }\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])) }\SpecialCharTok{+}\NormalTok{ prob\_BachelorMaster }\SpecialCharTok{*} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+
+\NormalTok{prob30search\_LB }\OtherTok{=}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{prob\_BachelorMaster) }\SpecialCharTok{*} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]) }\SpecialCharTok{+}\NormalTok{ prob\_BachelorMaster }\SpecialCharTok{*} \FunctionTok{max}\NormalTok{(}\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]), }\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])) }
+\NormalTok{prob30search\_UB }\OtherTok{=}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{prob\_BachelorMaster) }\SpecialCharTok{*} \FunctionTok{min}\NormalTok{(}\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]), }\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])) }\SpecialCharTok{+}\NormalTok{ prob\_BachelorMaster }\SpecialCharTok{*} \FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{benefits\_week30[data}\SpecialCharTok{$}\NormalTok{searchperiod}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{educ\_bachelormaster}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
+
+\NormalTok{MIV30\_LB }\OtherTok{=}\NormalTok{ prob30search\_LB }\SpecialCharTok{{-}}\NormalTok{ prob30nosearch\_LB}
+
+\NormalTok{MIV30\_UB }\OtherTok{=}\NormalTok{ prob30search\_UB }\SpecialCharTok{{-}}\NormalTok{ prob30nosearch\_UB}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Dataframe with all bounds for benefits after 10 weeks}
+\NormalTok{Model }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}No Assumptions\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Roy Model\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}MTS\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}MTR\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}MTS+MTR\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}MIV\textquotesingle{}}\NormalTok{)}
+\NormalTok{Lowerbound }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(Noass10\_LB, Roy10\_LB, MTS10\_LB, MTR10\_LB, MTSMTR10\_LB, MIV10\_LB)}
+\NormalTok{Upperbound }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(Noass10\_UB, Roy10\_UB, MTS10\_UB, MTR10\_UB, MTSMTR10\_UB, MIV10\_UB)}
+
+\NormalTok{bounds10 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(Model, Lowerbound, Upperbound)}
+\NormalTok{bounds10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Model Lowerbound Upperbound
+## 1 No Assumptions -0.5951952  0.4048048
+## 2      Roy Model -0.4000000  0.2612613
+## 3            MTS -0.1635432  0.4048048
+## 4            MTR -0.5951952  0.0000000
+## 5        MTS+MTR -0.1635432  0.0000000
+## 6            MIV -0.1610003 -0.1696931
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Dataframe with all bounds for benefits after 30 weeks}
+\NormalTok{Model }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}No Assumptions\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Roy Model\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}MTS\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}MTR\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}MTS+MTR\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}MIV\textquotesingle{}}\NormalTok{)}
+\NormalTok{Lowerbound }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(Noass30\_LB, Roy30\_LB, MTS30\_LB, MTR30\_LB, MTSMTR30\_LB, MIV30\_LB)}
+\NormalTok{Upperbound }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(Noass30\_UB, Roy30\_UB, MTS30\_UB, MTR30\_UB, MTSMTR30\_UB, MIV30\_UB)}
+
+\NormalTok{bounds30 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(Model, Lowerbound, Upperbound)}
+\NormalTok{bounds30}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Model Lowerbound Upperbound
+## 1 No Assumptions -0.5609610  0.4390390
+## 2      Roy Model -0.2936937  0.1891892
+## 3            MTS -0.1258578  0.4390390
+## 4            MTR -0.5609610  0.0000000
+## 5        MTS+MTR -0.1258578  0.0000000
+## 6            MIV -0.1016627 -0.1912732
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bounds10}\SpecialCharTok{$}\NormalTok{Model  }\OtherTok{=} \FunctionTok{factor}\NormalTok{(bounds10}\SpecialCharTok{$}\NormalTok{Model, }\AttributeTok{levels=}\FunctionTok{c}\NormalTok{(}\StringTok{"No Assumptions"}\NormalTok{, }\StringTok{"Roy Model"}\NormalTok{, }\StringTok{"MTS"}\NormalTok{, }\StringTok{"MTR"}\NormalTok{, }\StringTok{"MTS+MTR"}\NormalTok{, }\StringTok{"MIV"}\NormalTok{))}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(reshape2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'reshape2' was built under R version 4.0.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{melt}\NormalTok{(bounds10, }\AttributeTok{id.vars=}\StringTok{"Model"}\NormalTok{, }\AttributeTok{value.name =} \StringTok{"TreatmentEffect"}\NormalTok{)}
+
+\CommentTok{\# Everything on the same plot}
+\FunctionTok{ggplot}\NormalTok{(d, }\FunctionTok{aes}\NormalTok{(Model, TreatmentEffect, }\AttributeTok{col=}\NormalTok{variable)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_line}\NormalTok{( }\AttributeTok{color=}\StringTok{"grey"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{shape=}\StringTok{"{-}"}\NormalTok{, }\AttributeTok{color=}\StringTok{"\#69b3a2"}\NormalTok{, }\AttributeTok{size=}\DecValTok{15}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{stat\_smooth}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept=}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics{Assignment-2_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m10b }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(benefits\_week10 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ searchperiod }\SpecialCharTok{+}\NormalTok{ educ\_bachelormaster }\SpecialCharTok{+}\NormalTok{ educ\_prepvocational }\SpecialCharTok{+}\NormalTok{ educ\_unknown }\SpecialCharTok{+}\NormalTok{ educ\_vocational, }\AttributeTok{data =}\NormalTok{ data)}
+\NormalTok{m30a }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(benefits\_week30 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ searchperiod }\SpecialCharTok{+}\NormalTok{ educ\_bachelormaster }\SpecialCharTok{+}\NormalTok{ educ\_prepvocational }\SpecialCharTok{+}\NormalTok{ educ\_unknown }\SpecialCharTok{+}\NormalTok{ educ\_vocational, }\AttributeTok{data =}\NormalTok{ data)}
+
+\FunctionTok{stargazer}\NormalTok{(m10a, m10b, m30a, m30b,}\AttributeTok{type =} \StringTok{"latex"}\NormalTok{,}
+         \AttributeTok{title =} \StringTok{"LPM for Benefits"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[!htbp] \centering 
+  \caption{LPM for Benefits} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-5} 
+\\[-1.8ex] & \multicolumn{2}{c}{benefits\_week10} & \multicolumn{2}{c}{benefits\_week30} \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
+\hline \\[-1.8ex] 
+ searchperiod & $-$0.164$^{***}$ & $-$0.149$^{***}$ & $-$0.116$^{***}$ & $-$0.126$^{***}$ \\ 
+  & (0.023) & (0.023) & (0.024) & (0.024) \\ 
+  & & & & \\ 
+ educ\_bachelormaster &  & $-$0.071$^{*}$ & $-$0.181$^{***}$ &  \\ 
+  &  & (0.037) & (0.040) &  \\ 
+  & & & & \\ 
+ educ\_prepvocational &  & 0.040 & $-$0.029 &  \\ 
+  &  & (0.039) & (0.042) &  \\ 
+  & & & & \\ 
+ educ\_unknown &  & $-$0.358$^{***}$ & $-$0.341$^{***}$ &  \\ 
+  &  & (0.072) & (0.076) &  \\ 
+  & & & & \\ 
+ educ\_vocational &  & 0.019 & $-$0.066$^{*}$ &  \\ 
+  &  & (0.036) & (0.038) &  \\ 
+  & & & & \\ 
+ Constant & 0.736$^{***}$ & 0.744$^{***}$ & 0.624$^{***}$ & 0.540$^{***}$ \\ 
+  & (0.016) & (0.032) & (0.034) & (0.016) \\ 
+  & & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 1,665 & 1,665 & 1,665 & 1,665 \\ 
+R$^{2}$ & 0.030 & 0.054 & 0.041 & 0.016 \\ 
+Adjusted R$^{2}$ & 0.029 & 0.051 & 0.038 & 0.015 \\ 
+Residual Std. Error & 0.466 (df = 1663) & 0.461 (df = 1659) & 0.490 (df = 1659) & 0.496 (df = 1663) \\ 
+F Statistic & 50.771$^{***}$ (df = 1; 1663) & 18.994$^{***}$ (df = 5; 1659) & 14.092$^{***}$ (df = 5; 1659) & 26.592$^{***}$ (df = 1; 1663) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
+
+\end{document}
