@@ -13,6 +13,8 @@ rm(list=ls())
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(ggplot2, stargazer, lmtest, plm, 
                sandwich, fixest, modelsummary, vtable, foreign, RCT)
+#set tidy code
+knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 65), tidy = TRUE)
 ```
 
 ```{r data, include=FALSE}
@@ -37,7 +39,7 @@ knitr::kable(balance, caption = "Balance Table")
 
 ```
 
-#Q3
+# Q3
 Table $\ref{tab:reg}$ below provides the regression output for the effect of the search period on the probability of being on benefits after 10 and 30 weeks both without and with controls. The effect of the treatment on the 10 week mark decreases slightly in magnitude from the naive estimate. It remains significant though at $14.3$ percentage points. The treatment effect increases in magnitude for being on benefits at the 30 week mark from a 9.9 percentage point to 12.6 percentage point decrease in the probability. In both cases including covariates maintains an economic and statistically significant treatment effect.
 ```{r 3, results='asis'}
 
@@ -50,8 +52,8 @@ stargazer(m10a, m10b, m30a, m30b, column.labels = c("", "Covariates","", "Covari
           title = "LPM for Benefits", header = FALSE, label = "tab:reg", keep = c("searchperiod"))
 ```
 
-#Q4
-All the bounds are included in the overview table below. It is important to note the direction of the treatment effect. We are looking for a negative treatment effect, meaning that when we refer to the lower bound (mathematically) we are referring to the most optimistic bound on the effect size. We will make this clear in each case. The effect sizes are also measured in decimal points and should be interpreted as percentage point changes to the probability of being on benefits at the  10 and 30 week mark respectively. The no assumption bounds for the effect sizes  are $[-0.595, 0.405]$ at the 10 week mark and $[-0.561, 0.439]$ at the 30 week mark. This means that the most optimistic estimate for week 10 is a decrease in the probability of being on benefits of $59.5$ percentage points and the least optimistic is an increase by $40.5$ percentage points.
+# Q4
+All the bounds are included in the overview table in tables \ref{tab:week10} and \ref{tab:week30} It is important to note the direction of the treatment effect. We are looking for a negative treatment effect, meaning that when we refer to the lower bound (mathematically) we are referring to the most optimistic bound on the effect size. We will make this clear in each case. The effect sizes are also measured in decimal points and should be interpreted as percentage point changes to the probability of being on benefits at the  10 and 30 week mark respectively. The no assumption bounds for the effect sizes  are $[-0.595, 0.405]$ at the 10 week mark and $[-0.561, 0.439]$ at the 30 week mark. This means that the most optimistic estimate for week 10 is a decrease in the probability of being on benefits of $59.5$ percentage points and the least optimistic is an increase by $40.5$ percentage points.
 ```{r}
 probSearch = mean(data$searchperiod)
 ymin = 0
@@ -64,38 +66,34 @@ ymax = 1
 Noass10_LB = prob10search*probSearch - prob10nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymax
 Noass10_UB = prob10search*probSearch - prob10nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymin
 
-Noass_LB=57.2*0.4563-73.6*0.5437+100*0.53437-100
-Noass_UB=57.2*0.4563-73.6*0.5437+100*0.53437
-
 # Benefits after 30 weeks - No assumption
 Noass30_LB = prob30search*probSearch - prob30nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymax
 Noass30_UB = prob30search*probSearch - prob30nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymin
 ```
 
 
-#Q5
-
+# Q5
+Here we impose the restrictions of the roy model. We assume that only those who got the treatment benefit from it. Alternatively, this means that those who didn't get the treatment would not benefit from it. For the 10 week mark the bounds become $[-0.4, 0.261]$. For the 30 week mark the bounds are $[-0.294, 0.189]$. 
 ```{r 5, results='asis'}
 # Benefits after 10 weeks - Roy Model
 Roy10_LB = -(prob10nosearch - ymin)* (1-probSearch)
 Roy10_UB =  (prob10search - ymin) * probSearch
-Roy_LB=-73.6*0.5437
-Roy_UB=57.2*0.4563
 
 # Benefits after 30 weeks - Roy Model
 Roy30_LB = -(prob30nosearch - ymin)* (1-probSearch)
 Roy30_UB =  (prob30search - ymin) * probSearch
 ```
 
-#Q6
+# Q6
+MTR treatment always has a positive effect. This means that the probability that anyone is still on benefits after 10 or 30 weeks after treatment is always lower than if they had not received treatment. The MTR generally only affects the lower bound, as it pushes up the treatment effect (the worst estimate becomes better). However, in our case a better treatment effect is a more negative number. This means it works on our upper bound instead. This is why the upper bound becomes zero under MTR and the lower bound remains unchanged. The bounds under MRT for the 10 week mark the bounds become $[-0.505, 0.0]$. For the 30 week mark the bounds are $[-0.561, 0.0]$. 
 
+MTS normally affects the upper bound as it restricts the best estimate of the treatment. In our case though this is the lower bound. The bounds under MTS for the 10 week mark the bounds become $[-0.164, 0.405]$. For the 30 week mark the bounds are $[-0.126, 0.439]$.
+
+Combining both assumptions yields the MTS/MTR bounds of $[-0.164, 0.00]$ and $[-0.126, 0.0]$ for the 10 and 30 year mark respectively.
 ```{r 6, results='asis'}
 # Benefits after 10 weeks - MTS/MTR
 MTS10_LB = prob10search - prob10nosearch
 MTS10_UB = prob10search*probSearch - prob10nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymin
-  
-MTS_LB=57.2*0.4563-73.6*0.5437+100*0.53437-100
-MTS_UB=0
 
 MTR10_LB = prob10search*probSearch - prob10nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymax
 MTR10_UB = 0
@@ -120,7 +118,7 @@ MTSMTR30_LB = MTS30_LB
 MTSMTR30_UB = MTR30_UB
 ```
 
-#Q7
+# Q7
 
 ```{r}
 
@@ -143,13 +141,13 @@ prob10search_unknown = mean(data$benefits_week10[data$searchperiod==1 & data$edu
 prob10nosearch_unknown = mean(data$benefits_week10[data$searchperiod==0 & data$educ_unknown==1])
 ```
 
-As Vocational, Prepvocational and Primaryorless go against the MIV assumption, we reduce the MIV to whether a person has a bachelor or not, and check again whether the MIV assumption holds:
+Checking the data for the assumptions of the MIV reveals that Vocational, Prepvocational and Primaryorless go against the MIV assumption. We thus reduce the MIV to whether a person has a bachelor or not, and check again whether the MIV assumption holds:
 ```{r}
 prob10search_NObachelormaster = mean(data$benefits_week10[data$searchperiod==1 & data$educ_bachelormaster==0])
 prob10nosearch_NObachelormaster = mean(data$benefits_week10[data$searchperiod==0 & data$educ_bachelormaster==0])
 ```
 
-Now, the MIV assumption holds as for both cases $d = \{0,1\}$, the probability of persons with a bachelor or master degree being still unemployed after 10 weeks is lower than the probability of persons without a bachelor or master degree. 
+Now, the MIV assumption holds as for both cases $d = \{0,1\}$, the probability of persons with a bachelor or master degree being still unemployed after 10 weeks is lower than the probability of persons without a bachelor or master degree. Logically this could also be explained by the biggest difference in educational qualification existing for those with a bachelor and master degree. In contrast, the others may give people similarly marketable skills.
 ```{r}
 prob_BachelorMaster = mean(data$educ_bachelormaster)
 ```
