@@ -12,7 +12,8 @@ output:
 rm(list=ls())
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(ggplot2, stargazer, lmtest, plm, 
-               sandwich, fixest, modelsummary, vtable, foreign, RCT)
+               sandwich, fixest, modelsummary, vtable, foreign, RCT, reshape2)
+
 #set tidy code
 knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 65), tidy = TRUE)
 ```
@@ -26,13 +27,17 @@ data <- read.dta("searchperiod.dta")
 The mean probability of having benefits in week 10 of those without search period is $73.6%$. For those with the search period treatment this is $57.2%$. The probability of still having benefits in week 30 is $54%$ for those without and $41.4%$ for those with search treatment. In the most naive estimation it seems that the search treatment decreases the probability of being on benefits both 10 and 30 weeks after the initial claim.
 ```{r}
 prob10nosearch <- mean(data$benefits_week10[data$searchperiod==0])
+prob10nosearch
 prob10search <- mean(data$benefits_week10[data$searchperiod==1])
+prob10search
 prob30nosearch <- mean(data$benefits_week30[data$searchperiod==0])
+prob30nosearch
 prob30search <- mean(data$benefits_week30[data$searchperiod==1])
+prob30search
 ```
 
 # Q2
-The balance table is provided is provided in table \ref{tab:balance} The potential points of concern for the balance between control and treatment groups are the differences in age, slight unbalance in the locations and the difference in shares of unknown education. Particularly those with unknown education could be problematic. IT MAY BE GOOD TO EXCLUDE THEM
+The balance table is provided is provided in table \ref{tab:balance} The potential points of concern for the balance between control and treatment groups are the differences in age, slight unbalance in the locations and the difference in shares of unknown education. Particularly those with unknown education could be problematic. 
 ```{r 2}
 balance <- balance_table(data, "searchperiod")
 knitr::kable(balance, caption = "Balance Table")
@@ -58,7 +63,6 @@ All the bounds are included in the overview table in tables \ref{tab:week10} and
 probSearch = mean(data$searchperiod)
 ymin = 0
 ymax = 1
-# we can also jsut keep it in decimals
 ```
 
 ```{r 4, results='asis'}
@@ -73,7 +77,7 @@ Noass30_UB = prob30search*probSearch - prob30nosearch * (1-probSearch) + (ymin +
 
 
 # Q5
-Here we impose the restrictions of the roy model. We assume that only those who got the treatment benefit from it. Alternatively, this means that those who didn't get the treatment would not benefit from it. For the 10 week mark the bounds become $[-0.4, 0.261]$. For the 30 week mark the bounds are $[-0.294, 0.189]$. 
+Here we impose the restrictions of the Roy model. We assume that only those who got the treatment benefit from it. Alternatively, this means that those who didn't get the treatment would not benefit from it. For the 10 week mark the bounds become $[-0.4, 0.261]$. For the 30 week mark the bounds are $[-0.294, 0.189]$. 
 ```{r 5, results='asis'}
 # Benefits after 10 weeks - Roy Model
 Roy10_LB = -(prob10nosearch - ymin)* (1-probSearch)
@@ -85,9 +89,9 @@ Roy30_UB =  (prob30search - ymin) * probSearch
 ```
 
 # Q6
-MTR treatment always has a positive effect. This means that the probability that anyone is still on benefits after 10 or 30 weeks after treatment is always lower than if they had not received treatment. The MTR generally only affects the lower bound, as it pushes up the treatment effect (the worst estimate becomes better). However, in our case a better treatment effect is a more negative number. This means it works on our upper bound instead. This is why the upper bound becomes zero under MTR and the lower bound remains unchanged. The bounds under MRT for the 10 week mark the bounds become $[-0.505, 0.0]$. For the 30 week mark the bounds are $[-0.561, 0.0]$. 
+In MTR, treatment is assumed to be always improve the outcome. Therefore, we introduce the assumption that if an individual had a search period then this decreases the probability that they are going to be on benefits after 10 or 30 weeks after the treatment. This means that the probability that anyone is still on benefits after 10 or 30 weeks after treatment is always lower than if they had not received treatment. The MTR generally only affects the lower bound, as it pushes up the treatment effect (the worst estimate becomes better). However, in our case a better treatment effect is a more negative number. This means it works on our upper bound instead. This is why the upper bound becomes zero under MTR and the lower bound remains unchanged. The bounds under MRT for the 10 week mark the bounds become $[-0.595, 0.0]$. For the 30 week mark the bounds are $[-0.561, 0.0]$. 
 
-MTS normally affects the upper bound as it restricts the best estimate of the treatment. In our case though this is the lower bound. The bounds under MTS for the 10 week mark the bounds become $[-0.164, 0.405]$. For the 30 week mark the bounds are $[-0.126, 0.439]$.
+MTS normally affects the upper bound as it restricts the best estimate of the treatment, assuming that individuals assigned to the treatment have more favorable outcomes than individuals who were not assigned to the treatment.  In our case though this is the lower bound. We introduce the assumption that individuals who got a search period have generally higher chances finding a job within 10 (30) weeks than individuals who were not assigned to treatment. The bounds under MTS for the 10 week mark the bounds become $[-0.164, 0.405]$. For the 30 week mark the bounds are $[-0.126, 0.439]$.
 
 Combining both assumptions yields the MTS/MTR bounds of $[-0.164, 0.00]$ and $[-0.126, 0.0]$ for the 10 and 30 year mark respectively.
 ```{r 6, results='asis'}
@@ -98,14 +102,8 @@ MTS10_UB = prob10search*probSearch - prob10nosearch * (1-probSearch) + (ymin + y
 MTR10_LB = prob10search*probSearch - prob10nosearch * (1-probSearch) + (ymin + ymax) * (1-probSearch) - ymax
 MTR10_UB = 0
 
-MTR_LB=-16.4
-MTR_UB=57.2*0.4563-73.6*0.5437+100*0.53437
-
 MTSMTR10_LB = MTS10_LB
 MTSMTR10_UB = MTR10_UB
-
-MTSMTR_LB=-16.4
-MTSMTR_UB=0
 
 # Benefits after 30 weeks - MTS/MTR
 MTS30_LB = prob30search - prob30nosearch
@@ -137,8 +135,8 @@ prob10search_primaryorless = mean(data$benefits_week10[data$searchperiod==1 & da
 prob10nosearch_primaryorless = mean(data$benefits_week10[data$searchperiod==0 & data$educ_primaryorless==1])
 
 # Does not tell us anything, so ignore
-prob10search_unknown = mean(data$benefits_week10[data$searchperiod==1 & data$educ_unknown==1])
-prob10nosearch_unknown = mean(data$benefits_week10[data$searchperiod==0 & data$educ_unknown==1])
+# prob10search_unknown = mean(data$benefits_week10[data$searchperiod==1 & data$educ_unknown==1])
+# prob10nosearch_unknown = mean(data$benefits_week10[data$searchperiod==0 & data$educ_unknown==1])
 ```
 
 Checking the data for the assumptions of the MIV reveals that Vocational, Prepvocational and Primaryorless go against the MIV assumption. We thus reduce the MIV to whether a person has a bachelor or not, and check again whether the MIV assumption holds:
@@ -199,8 +197,6 @@ knitr::kable(bounds30, caption = "30 Week Bounds")
 ```
 ```{r}
 bounds10$Model  = factor(bounds10$Model, levels=c("No Assumptions", "Roy Model", "MTS", "MTR", "MTS+MTR", "MIV"))
-library(ggplot2)
-library(reshape2)
 d <- melt(bounds10, id.vars="Model", value.name = "TreatmentEffect")
 
 # Everything on the same plot
@@ -211,12 +207,15 @@ ggplot(d, aes(Model, TreatmentEffect, col=variable)) +
   geom_hline(yintercept=0)
 ```
 
+```{r}
+bounds30$Model  = factor(bounds30$Model, levels=c("No Assumptions", "Roy Model", "MTS", "MTR", "MTS+MTR", "MIV"))
+e <- melt(bounds30, id.vars="Model", value.name = "TreatmentEffect")
 
-```{r 7, results='asis'}
-m10b <- lm(benefits_week10 ~ searchperiod + educ_bachelormaster + educ_prepvocational + educ_unknown + educ_vocational, data = data)
-m30a <- lm(benefits_week30 ~ searchperiod + educ_bachelormaster + educ_prepvocational + educ_unknown + educ_vocational, data = data)
-
-stargazer(m10a, m10b, m30a, m30b,type = "latex",
-         title = "LPM for Benefits", header = FALSE)
+# Everything on the same plot
+ggplot(e, aes(Model, TreatmentEffect, col=variable)) + 
+  geom_line( color="grey") +
+  geom_point(shape="-", color="#69b3a2", size=15) +
+  stat_smooth() +
+  geom_hline(yintercept=0)
 ```
 
