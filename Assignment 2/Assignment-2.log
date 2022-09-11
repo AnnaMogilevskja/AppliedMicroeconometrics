@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2022.3.21)  10 SEP 2022 10:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2022.3.21)  11 SEP 2022 14:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -558,51 +558,50 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 14
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
-LaTeX Warning: Reference `tab:balance' on page 1 undefined on input line 152.
-
-
-Overfull \hbox (114.16252pt too wide) in paragraph at lines 247--269
- [][] 
- []
+LaTeX Warning: Reference `tab:balance' on page 1 undefined on input line 187.
 
 [1
 
 {/Users/julian/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.284 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.284 
-      ] [3] [4]
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 441.
-(/Users/julian/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
-File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [5pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.522 \end{Shaded}
-                  ]
-<Assignment-2_files/figure-latex/unnamed-chunk-9-1.pdf, id=53, 459.7175pt x 313.17pt>
-File: Assignment-2_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
-<use Assignment-2_files/figure-latex/unnamed-chunk-9-1.pdf>
-Package pdftex.def Info: Assignment-2_files/figure-latex/unnamed-chunk-9-1.pdf  used on input line 528.
-(pdftex.def)             Requested size: 459.7304pt x 313.17877pt.
-
-Overfull \hbox (121.0793pt too wide) in paragraph at lines 543--579
+l.299 \begin{Shaded}
+                    ]
+Overfull \hbox (114.16252pt too wide) in paragraph at lines 341--363
  [][] 
  []
 
-[6pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+
+LaTeX Warning: Reference `tab:week10' on page 3 undefined on input line 369.
+
+
+LaTeX Warning: Reference `tab:week30' on page 3 undefined on input line 369.
+
+[3pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.581 \end{document}
-                     <./Assignment-2_files/figure-latex/unnamed-chunk-9-1.pdf>] [7pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+l.383 
+      ] [4] [5] [6]
+<Assignment-2_files/figure-latex/unnamed-chunk-9-1.pdf, id=80, 459.7175pt x 313.17pt>
+File: Assignment-2_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
+<use Assignment-2_files/figure-latex/unnamed-chunk-9-1.pdf>
+Package pdftex.def Info: Assignment-2_files/figure-latex/unnamed-chunk-9-1.pdf  used on input line 679.
+(pdftex.def)             Requested size: 459.7304pt x 313.17877pt.
+[7pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.581 \end{document}
-                    ] (./Assignment-2.aux)
+l.681 \begin{verbatim}
+                      ]
+<Assignment-2_files/figure-latex/unnamed-chunk-10-1.pdf, id=87, 459.7175pt x 313.17pt>
+File: Assignment-2_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use Assignment-2_files/figure-latex/unnamed-chunk-10-1.pdf>
+Package pdftex.def Info: Assignment-2_files/figure-latex/unnamed-chunk-10-1.pdf  used on input line 685.
+(pdftex.def)             Requested size: 459.7304pt x 313.17877pt.
+[8pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.687 \end{document}
+                     <./Assignment-2_files/figure-latex/unnamed-chunk-9-1.pdf>] [9 <./Assignment-2_files/figure-latex/unnamed-chunk-10-1.pdf>] (./Assignment-2.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -610,21 +609,21 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `Assignment-2.out' has not changed.
-(rerunfilecheck)             Checksum: BB9A672E501E9DCD8E0A812950CEB576;108.
+(rerunfilecheck)             Checksum: 9E08F14DEDFD6E386D8AA365E11D9280;378.
  ) 
 Here is how much of TeX's memory you used:
- 12699 strings out of 480236
- 199672 string characters out of 5894951
- 508294 words of memory out of 5000000
- 30394 multiletter control sequences out of 15000+600000
- 516858 words of font info for 70 fonts, out of 8000000 for 9000
+ 12690 strings out of 480236
+ 199577 string characters out of 5894951
+ 497182 words of memory out of 5000000
+ 30377 multiletter control sequences out of 15000+600000
+ 516553 words of font info for 69 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,11n,63p,1165b,364s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on Assignment-2.pdf (7 pages, 234849 bytes).
+ 60i,11n,63p,439b,364s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
+Output written on Assignment-2.pdf (9 pages, 253756 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
- 99 compressed objects within 1 object stream
- 17 named destinations out of 1000 (max. 500000)
- 22 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 177 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
+ 67 words of extra memory for PDF output out of 10000 (max. 10000000)
 
