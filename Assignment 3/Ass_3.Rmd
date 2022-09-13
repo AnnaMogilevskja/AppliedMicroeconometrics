@@ -1,0 +1,36 @@
+---
+title: "Assignment"
+author: "483670"
+date: \today
+output:
+  pdf_document:
+      includes:
+        in_header: "preamble.tex"
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(ggplot2, stargazer, lmtest, plm, 
+               sandwich, fixest, modelsummary, vtable, foreign, RCT, reshape2)
+
+#set tidy code
+knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 65), tidy = TRUE)
+```
+
+```{r data, include=FALSE, results='asis', echo=TRUE}
+*data <- read.dta("searchperiod.dta")
+```
+
+# Q1
+
+
+```{r 1}
+
+```
+
+# Q2
+
+```{r 2}
+
+```
