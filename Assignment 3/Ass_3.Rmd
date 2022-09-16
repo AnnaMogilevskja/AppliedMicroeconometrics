@@ -115,14 +115,14 @@ PAemp1a <- mean(data$EMPFT[data$STATE==0])+mean(data$EMPPT[data$STATE==0])+mean(
 PAemp2a <- mean(data$EMPFT2[data$STATE==0])+mean(data$EMPPT2[data$STATE==0])+mean(data$NMGRS2[data$STATE==0])
 EffNJa <- NJemp2a-NJemp1a
 EffPAa <- PAemp2a-PAemp1a
-data2 <- subset(data, STATUS2==1)
-NJemp1b <- mean(data2$EMPFT[data$STATE==1])+mean(data2$EMPPT[data$STATE==1])+mean(data2$NMGRS[data$STATE==1])
-NJemp2b <- mean(data2$EMPFT2[data$STATE==1])+mean(data2$EMPPT2[data$STATE==1])+mean(data2$NMGRS2[data$STATE==1])
-PAemp1b <- mean(data2$EMPFT[data$STATE==0])+mean(data2$EMPPT[data$STATE==0])+mean(data2$NMGRS[data$STATE==0])
-PAemp2b <- mean(data2$EMPFT2[data$STATE==0])+mean(data2$EMPPT2[data$STATE==0])+mean(data2$NMGRS2[data$STATE==0])
+data1 <- subset(data, STATUS2==1)
+NJemp1b <- mean(data1$EMPFT[data$STATE==1])+mean(data1$EMPPT[data$STATE==1])+mean(data1$NMGRS[data$STATE==1])
+NJemp2b <- mean(data1$EMPFT2[data$STATE==1])+mean(data1$EMPPT2[data$STATE==1])+mean(data1$NMGRS2[data$STATE==1])
+PAemp1b <- mean(data1$EMPFT[data$STATE==0])+mean(data1$EMPPT[data$STATE==0])+mean(data1$NMGRS[data$STATE==0])
+PAemp2b <- mean(data1$EMPFT2[data$STATE==0])+mean(data1$EMPPT2[data$STATE==0])+mean(data1$NMGRS2[data$STATE==0])
 EffNJb <- NJemp2b-NJemp1b
 EffPAb <- PAemp2b-PAemp1b
-data <- data2
+data <- data1
 ```
 
 # Q2
@@ -146,7 +146,7 @@ Comparing stepped dummy variables does not make an awful lot of sense.
 ```{r 3}
 data3 <- subset(data, select = -c(STATUS2))
 balance <- balance_table(data3, "STATE")
-knitr::kable(balance, caption = "Balance Table")
+#knitr::kable(balance, caption = "Balance Table")
 ```
 
 
@@ -156,7 +156,8 @@ To estimate the propensity score we run a probit model estimating the probabilit
 ```{r 4}
 dataNJ <- subset(data, !STATE==1)
 dataPA <- subset(data, !STATE==0)
-#graph1 <- cdfCompare(dataNJ$EMPFT[0:79], dataPA$EMPFT[0:331])
+
+gEMP1 <- cdfCompare(dataNJ$EMP1[0:74], dataPA$EMP1[0:304])
 
 
 hEMP1 <- hist(dataNJ$EMPFT)
@@ -164,19 +165,41 @@ hEMP2 <- hist(dataPA$EMPFT)
 
 #plot(ha,col = "blue" , xlim = c(0, 50), ylim = c(0,100))
 #plot (hb, col = "red", add = TRUE)
-#probit <- glm(STATE ~ HRSOPEN + INCTIME + NREGS+ CHAIN, family = binomial(link = "probit"), data = data)
-#stargazer(probit, column.labels = c("", ""),type = "text",
-          #title = "Minimum Wage", header = FALSE, label = "tab:probit")
+probit <- glm(STATE ~ HRSOPEN + INCTIME + NREGS+ CHAIN, family = binomial(link = "probit"), data = data)
+data$prop <- predict.glm(probit, data)
+stargazer(probit, column.labels = c("", ""),type = "text",
+          title = "Minimum Wage", header = FALSE, label = "tab:probit")
+
+dataNJ <- subset(data, !STATE==1)
+dataPA <- subset(data, !STATE==0)
+graph1 <- cdfCompare(dataNJ$prop[0:74], dataPA$prop[0:304])
 
 ```
 
 
 # Q5
 
-https://www.r-bloggers.com/2022/04/propensity-score-matching/
+https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.665.635&rep=rep1&type=pdf
 
 ```{r }
-#THIS DOESN'T WORK YET!!
+data5 <- subset(data, !is.na(HRSOPEN)&!is.na(INCTIME)&!is.na(NREGS))
+data5$Treat <- ifelse(data5$STATE ==1,0,1)
+prop <- matchit(Treat ~  HRSOPEN + INCTIME + NREGS, data = data5, method = "nearest", distance ="glm", ratio = 1, replace = FALSE)
 
-#prop <- matchit(STATE ~ HRSOPEN + INCTIME + NREGS, data = data, method = "nearest", distance ="glm",ratio = 1, replace = FALSE)
+summary(prop)
+
+data_m<- match.data(prop)
+
+r1_m <- lm(EMP1 ~ Treat + HRSOPEN + INCTIME + NREGS, data_m)
+r2_m <- lm(EMP2 ~ Treat + HRSOPEN + INCTIME + NREGS, data_m)
+```
+
+# Q6
+
+https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.665.635&rep=rep1&type=pdf
+
+```{r }
+r3_m <- lm(difE ~ Treat + HRSOPEN + INCTIME + NREGS, data_m)
+stargazer(r1_m, r2_m, r3_m, column.labels = c(""), type = "text",
+          title = "Treatment Effect", header = FALSE, label = "tab:reg1")
 ```
