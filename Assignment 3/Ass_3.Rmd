@@ -1,6 +1,6 @@
 ---
 title: "Assignment"
-author: "483670"
+author: "483670 and 630516"
 date: \today
 output:
   pdf_document
@@ -92,7 +92,7 @@ Second Interview Status
 rm(list=ls())
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(ggplot2, stargazer, lmtest, plm, 
-               sandwich, fixest, modelsummary, vtable, foreign, RCT, reshape2, 
+               sandwich, fixest, cobalt, modelsummary, vtable, foreign, RCT, reshape2, 
                MatchIt, EnvStats
                )
 
@@ -105,101 +105,144 @@ data <- read.dta("CardKrueger.dta")
 data <- subset(data, !is.na(EMPFT)&!is.na(EMPFT2)&!is.na(EMPFT2)&!is.na(EMPPT2)&!is.na(NMGRS)&!is.na(NMGRS2))      
 ```
 
-# Q1
+# Q1 (Julian)
 The mean number of employees in NJ are 'r tostring(NJemp1)' and "NJemp2" for the first and second wave respectively. In Pa the employee numbers were, respectively "PAemp1" and "PAemp2" for the first and second wave. The naive treatment effect is then "EffNJa" for NJ and "EFFPAa" for Pa. If we adjust the data set to only include those who participated both times this effect changes to "EffNJb" for NJ and "EFFPAb" for Pa. The treatment effect thus improves in both states. 
 
 ```{r 1}
-NJemp1a <- mean(data$EMPFT[data$STATE==1])+mean(data$EMPPT[data$STATE==1])+mean(data$NMGRS[data$STATE==1])
-NJemp2a <- mean(data$EMPFT2[data$STATE==1])+mean(data$EMPPT2[data$STATE==1])+mean(data$NMGRS2[data$STATE==1])
-PAemp1a <- mean(data$EMPFT[data$STATE==0])+mean(data$EMPPT[data$STATE==0])+mean(data$NMGRS[data$STATE==0])
-PAemp2a <- mean(data$EMPFT2[data$STATE==0])+mean(data$EMPPT2[data$STATE==0])+mean(data$NMGRS2[data$STATE==0])
+NJemp1a <- mean(data$EMPFT[data$STATE==1])+0.5*mean(data$EMPPT[data$STATE==1])+mean(data$NMGRS[data$STATE==1])
+NJemp2a <- mean(data$EMPFT2[data$STATE==1])+0.5*mean(data$EMPPT2[data$STATE==1])+mean(data$NMGRS2[data$STATE==1])
+PAemp1a <- mean(data$EMPFT[data$STATE==0])+0.5*mean(data$EMPPT[data$STATE==0])+mean(data$NMGRS[data$STATE==0])
+PAemp2a <- mean(data$EMPFT2[data$STATE==0])+0.5*mean(data$EMPPT2[data$STATE==0])+mean(data$NMGRS2[data$STATE==0])
 EffNJa <- NJemp2a-NJemp1a
 EffPAa <- PAemp2a-PAemp1a
+DiffDiffa <- EffNJa - EffPAa
+DiffDiffa
 data1 <- subset(data, STATUS2==1)
-NJemp1b <- mean(data1$EMPFT[data$STATE==1])+mean(data1$EMPPT[data$STATE==1])+mean(data1$NMGRS[data$STATE==1])
-NJemp2b <- mean(data1$EMPFT2[data$STATE==1])+mean(data1$EMPPT2[data$STATE==1])+mean(data1$NMGRS2[data$STATE==1])
-PAemp1b <- mean(data1$EMPFT[data$STATE==0])+mean(data1$EMPPT[data$STATE==0])+mean(data1$NMGRS[data$STATE==0])
-PAemp2b <- mean(data1$EMPFT2[data$STATE==0])+mean(data1$EMPPT2[data$STATE==0])+mean(data1$NMGRS2[data$STATE==0])
+
+NJemp1b <- mean(data1$EMPFT[data1$STATE==1])+0.5*mean(data1$EMPPT[data1$STATE==1])+mean(data1$NMGRS[data1$STATE==1])
+NJemp2b <- mean(data1$EMPFT2[data1$STATE==1])+0.5*mean(data1$EMPPT2[data1$STATE==1])+mean(data1$NMGRS2[data1$STATE==1])
+
+PAemp1b <- mean(data1$EMPFT[data1$STATE==0])+0.5*mean(data1$EMPPT[data1$STATE==0])+mean(data1$NMGRS[data1$STATE==0])
+PAemp2b <- mean(data1$EMPFT2[data1$STATE==0])+0.5*mean(data1$EMPPT2[data1$STATE==0])+mean(data1$NMGRS2[data1$STATE==0])
+
+
 EffNJb <- NJemp2b-NJemp1b
 EffPAb <- PAemp2b-PAemp1b
+DiffDiffb <- EffNJb - EffPAb
+DiffDiffb
 data <- data1
 ```
 
-# Q2
+# Q2 (Anna)
+ARE WE SUPPOSED TO LOOK ONLY INTO THE RESTAURANTS THAT ANSWERED IN BOTH WAVES?
 As we are looking at the difference in each shop we restrict the sample to those who responded in both waves. The effect of the minimum wage in the simple diff-in-diff is "dif_eff1". Once we add controls for the amount of time the shop is open and a proxy for its capacity (the number of registers) the magnitude of effect increases slightly to $"dif_eff2"$. CAN WE CONTROL FOR THE NUMBER OF EMPLOYEES IMPACTED BY THE WAGE SHARE? OR IS THAT A MECHANISM??
+
+In our view, most variables collected in the first wave could serve as potential controls as they either impact the manager's decision to hire/fire workers, or the decision of workers becoming an employee of the restaurant or leaving it. However, as soon as we include all variables as controls, the explainability of the model (Adjusted $R^2$) decreases relative to the basis model. The only regressor that is significant is the starting wage. Hence, we start first with the starting wage as the second regressor. The third model has a higher adjusted $R^2$. The state effect is significant at 5\% but lower by around 0.5 relative to the basismodel. The starting wage is significant at 5\%, an increase in 1 Dollar per hour, increases the employment by around 2.6 workers. 
+
+In the next steps, we add step by step variables and keep the regressors that increase the explainability of the model. We end up with two models. One includes the hour of opening. The adjusted $R^2$ is higher relative to the basismodel as well as the first model. With a state effect of $-2.108$, the effect is lower than in the previous models. Furthermore, the sigificance is now at 10\%. Last but not least, we add the number of employees affected by the new minimum. In comparison to the other variables, it might be not perfectly evident why one should control for this variable. However, assuming that manager's know who of their employees will be affected by the new policy, they may have to take the executive decision to fire employees to balance out the increase in costs. And indeed, as soon as we add this variable, the adjusted $R^2$ increases relative to the previous models. The state effect is still significant at 10\% but a little bit lower with $-2.035$. The number of affected employees and the hour of opening are both significant at 10\% and have a negative effect on the change of employment. The starting wage is not significant anymore. 
+
+OPEN           72       76     5.2   hour of opening
+HRSOPEN        78       82     5.2   number hrs open per day
+
+NREGS         102      103     2.0   number of cash registers in store
+NREGS11       105      106     2.0   number of registers open at 11:00 am
+
 ```{r 2}
-data$EMP1 <- data$EMPFT+data$EMPPT+data$NMGRS
-data$EMP2 <- data$EMPFT2+data$EMPPT2+data$NMGRS2
+data$EMP1 <- data$EMPFT+0.5*data$EMPPT+data$NMGRS
+data$EMP2 <- data$EMPFT2+0.5*data$EMPPT2+data$NMGRS2
 data$difE <- data$EMP1-data$EMP2
 m1 <- lm(difE ~ STATE, data)
-m2 <- lm(difE ~ STATE+ HRSOPEN+NREGS, data)
+m2 <- lm(difE ~ STATE+ HRSOPEN*STATE + HRSOPEN, data) # potential interaction effects!
+m3 <- lm(difE ~ STATE+ OPEN*STATE + OPEN, data)
+m4 <- lm(difE ~ STATE+ NREGS*STATE + NREGS, data)
+m5 <- lm(difE ~ STATE+ NREGS11*STATE + NREGS11, data)
+m6 <- lm(difE ~ STATE+ WAGE_ST, data)
+m7 <- lm(difE ~ STATE+ WAGE_ST+OPEN, data)
+m8 <- lm(difE ~ STATE+ WAGE_ST+OPEN+PCTAFF, data)
 dif_eff1 <-m1$coefficients[2]
 dif_eff2 <-m2$coefficients[2]
-stargazer(m1, m2, column.labels = c("", "Controls"),type = "text",
+stargazer(m1, m2,m3,m4,m5,m6, m7, m8, column.labels = c("", "Controls"),type = "text",
           title = "Minimum Wage", header = FALSE, label = "tab:reg1")
 ```
 
 # Q3
-The status variable provides problems to the command and has been left out of the analysis. It looks like there are potential differences between in the states on the number of employees. This difference seems to originate in a difference in the number of full-time employees in the first wave. 
 
-Comparing stepped dummy variables does not make an awful lot of sense. 
+Media_control1 is the median for Pennsylvenia and Media_trat1 is the median for New Jersey. We ignore the location dummies as they naturally results in significant differences among the states. For the other variables, we can see a significant difference in full-time employees (EMPFT) in the first survey year as restaurants in New Jersey seem to have more employees than restaurants in Pennsylvenie according to the median statistics. However, an insightful aspect is that in the second survey the median in Pennsylvenia is considerable higher (EMPFT = 1.02, EMPFT2 = 7.78) which is why the difference between the states with respect to the number of full-time employees is not significant anymore in the second survey. Another significant difference between the states can be observed for the usual amount of first raise (\$/hr) in the second survey which is higher in New Jersey than in Pennsylvenia. Comparing it to the first survey, we can see that before the usual amount of first raise (\$/hr) was higher in both states but it decreased more for Pennsylvenia. Generally, participating restaurants in Pennsylvenia have substantial higher prices across all products in both survey. Moreover, the starting wage in the second survey is significantly higher for New Jersey. However, this does not only results from an increase of the Median for restaurants in New Jersey but also from a decrease of around 0.03 for restaurants in Pennsylvenia.\\
+
+All in all, there are considerable differences between the states. However, not every significant difference can be observed in both surveys. Especially, when it comes to the starting wage and the amount of first raise, where significant differences between the states can be only observed for the second survey, we must consider that they result from the state effects. Nonetheless, one aspects that worries us is the significant difference in full-time employees that is lost in the second survey. Moreover, it seems that there are considerable price differences across the states but it is not clear whether it is due to general price differences between the states or due to more expensive restaurants answering the survey in Pennsylvenia. 
 ```{r 3}
 data3 <- subset(data, select = -c(STATUS2))
 balance <- balance_table(data3, "STATE")
-#knitr::kable(balance, caption = "Balance Table")
+knitr::kable(balance, caption = "Balance Table")
 ```
 
 
-# Q4
-
+# Q4 (Julian)
 To estimate the propensity score we run a probit model estimating the probability of being in a given state. Table \ref{tab:probit} calculates the probability of each restaurant being in NJ as opposed to Pa. 
+
+We do not include location dummies in the estimation as these affect the treatment but not the outcome variable, hence they can be used as instruments for istance. We use all variables that jointly determine the treatment and the outcome. 
+
 ```{r 4}
-dataNJ <- subset(data, !STATE==1)
-dataPA <- subset(data, !STATE==0)
+dataNJ <- subset(data, STATE==1)
+dataPA <- subset(data, STATE==0)
+bal.plot(data, treat = data$STATE, var.name = "EMP1")
+bal.plot(data, treat = data$STATE, var.name = "EMPFT")
+bal.plot(data, treat = data$STATE, var.name = "HRSOPEN")
+bal.plot(data, treat = data$STATE, var.name = "INCTIME")
+bal.plot(data, treat = data$STATE, var.name = "NREGS")
+bal.plot(data, treat = data$STATE, var.name = "CHAIN")
+bal.plot(data, treat = data$STATE, var.name = "CO_OWNED")
+bal.plot(data, treat = data$STATE, var.name = "WAGE_ST")
+bal.plot(data, treat = data$STATE, var.name = "BONUS")
+bal.plot(data, treat = data$STATE, var.name = "MEALS")
+bal.plot(data, treat = data$STATE, var.name = "PSODA")
 
-gEMP1 <- cdfCompare(dataNJ$EMP1[0:74], dataPA$EMP1[0:304])
 
-
-hEMP1 <- hist(dataNJ$EMPFT)
-hEMP2 <- hist(dataPA$EMPFT)
-
-#plot(ha,col = "blue" , xlim = c(0, 50), ylim = c(0,100))
-#plot (hb, col = "red", add = TRUE)
-probit <- glm(STATE ~ HRSOPEN + INCTIME + NREGS+ CHAIN, family = binomial(link = "probit"), data = data)
-data$prop <- predict.glm(probit, data)
+# PCTAFF????
+probit <- glm(STATE ~ HRSOPEN + INCTIME + NREGS+ CHAIN + CO_OWNED + WAGE_ST + BONUS + MEALS+ PSODA, family = binomial(link = "probit"), data = data)
+data$prop <- predict(probit, type = "response", data)
 stargazer(probit, column.labels = c("", ""),type = "text",
           title = "Minimum Wage", header = FALSE, label = "tab:probit")
 
-dataNJ <- subset(data, !STATE==1)
-dataPA <- subset(data, !STATE==0)
-graph1 <- cdfCompare(dataNJ$prop[0:74], dataPA$prop[0:304])
-
+dataNJ <- subset(data, STATE==1)
+dataPA <- subset(data, STATE==0)
+bal.plot(data, treat = data$STATE, var.name = "prop")
 ```
 
 
-# Q5
+# Q5 (Anna)
 
 https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.665.635&rep=rep1&type=pdf
 
 ```{r }
-data5 <- subset(data, !is.na(HRSOPEN)&!is.na(INCTIME)&!is.na(NREGS))
-data5$Treat <- ifelse(data5$STATE ==1,0,1)
-prop <- matchit(Treat ~  HRSOPEN + INCTIME + NREGS, data = data5, method = "nearest", distance ="glm", ratio = 1, replace = FALSE)
-
+data5 <- subset(data, !is.na(HRSOPEN)&!is.na(INCTIME)&!is.na(NREGS)&!is.na(prop))
+prop <- matchit(STATE ~ HRSOPEN + INCTIME + NREGS+ CHAIN + CO_OWNED + WAGE_ST + BONUS + MEALS+ PSODA, data = data5, method = "nearest", distance = data5$prop, ratio = 1, replace = TRUE)
+# it does not use the proposenty score "distance = prs_df$pr_score" / distance ="glm"
 summary(prop)
+bal.tab(prop, disp.subclass = TRUE)
 
-data_m<- match.data(prop)
 
-r1_m <- lm(EMP1 ~ Treat + HRSOPEN + INCTIME + NREGS, data_m)
-r2_m <- lm(EMP2 ~ Treat + HRSOPEN + INCTIME + NREGS, data_m)
+data_m <- match.data(prop)
+bal.plot(data_m, treat = data_m$STATE, var.name = "prop")
+
+weight = prop$weights
+r1_m <- lm(EMP1 ~ STATE, data_m, weights = data_m$weights)
+r2_m <- lm(EMP2 ~ STATE, data_m, weights = data_m$weights)
+r1_m
+r2_m
 ```
 
-# Q6
+# Q6 (Anna)
 
 https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.665.635&rep=rep1&type=pdf
 
 ```{r }
-r3_m <- lm(difE ~ Treat + HRSOPEN + INCTIME + NREGS, data_m)
+r3_m <- lm(difE ~  STATE, data_m, weights = data_m$weights)
 stargazer(r1_m, r2_m, r3_m, column.labels = c(""), type = "text",
           title = "Treatment Effect", header = FALSE, label = "tab:reg1")
 ```
+# Q7 (Julian)
+```{r}
+sum(data_m$prop*(((data_m$STATE*data_m$difE)/data_m$prop) - ((1-data_m$STATE)*data_m$difE/(1-data_m$prop))))/sum(data_m$prop)
+```
+
