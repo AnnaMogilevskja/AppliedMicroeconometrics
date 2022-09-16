@@ -158,10 +158,14 @@ dataNJ <- subset(data, !STATE==1)
 dataPA <- subset(data, !STATE==0)
 
 gEMP1 <- cdfCompare(dataNJ$EMP1[0:74], dataPA$EMP1[0:304])
+gNREGS <- cdfCompare(dataNJ$NREGS[0:74], dataPA$NREGS[0:304])
+gHRSOPEN <- cdfCompare(dataNJ$HRSOPEN[0:74], dataPA$HRSOPEN[0:304])
+gCHAIN <- cdfCompare(dataNJ$CHAIN[0:74], dataPA$CHAIN[0:304])
+gINCTIME <- cdfCompare(dataNJ$INCTIME[0:74], dataPA$INCTIME[0:304])
 
 
-hEMP1 <- hist(dataNJ$EMPFT)
-hEMP2 <- hist(dataPA$EMPFT)
+#hEMP1 <- hist(dataNJ$EMPFT)
+#hEMP2 <- hist(dataPA$EMPFT)
 
 #plot(ha,col = "blue" , xlim = c(0, 50), ylim = c(0,100))
 #plot (hb, col = "red", add = TRUE)

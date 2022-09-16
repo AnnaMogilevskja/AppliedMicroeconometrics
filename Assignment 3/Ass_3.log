@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2022.3.21)  15 SEP 2022 12:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2022.3.21)  16 SEP 2022 13:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -576,48 +576,67 @@ Overfull \hbox (2018.73775pt too wide) in paragraph at lines 220--220
  []
 
 [2]
-
-LaTeX Warning: Reference `tab:probit' on page 3 undefined on input line 407.
-
-[3] [4pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.419 \end{Shaded}
-                  ]
-<Ass_3_files/figure-latex/4-1.pdf, id=52, 427.5975pt x 285.065pt>
-File: Ass_3_files/figure-latex/4-1.pdf Graphic file (type pdf)
-<use Ass_3_files/figure-latex/4-1.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/4-1.pdf  used on input line 421.
-(pdftex.def)             Requested size: 427.59645pt x 285.0643pt.
-<Ass_3_files/figure-latex/4-2.pdf, id=53, 427.5975pt x 285.065pt>
-File: Ass_3_files/figure-latex/4-2.pdf Graphic file (type pdf)
-<use Ass_3_files/figure-latex/4-2.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/4-2.pdf  used on input line 429.
-(pdftex.def)             Requested size: 427.59645pt x 285.0643pt.
-[5 <./Ass_3_files/figure-latex/4-1.pdf> <./Ass_3_files/figure-latex/4-2.pdf>]
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 433.
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 294.
 (/Users/julian/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [6] (./Ass_3.aux)
+)
+
+LaTeX Warning: Reference `tab:probit' on page 3 undefined on input line 302.
+
+<Ass_3_files/figure-latex/4-1.pdf, id=43, 440.64626pt x 295.1025pt>
+File: Ass_3_files/figure-latex/4-1.pdf Graphic file (type pdf)
+<use Ass_3_files/figure-latex/4-1.pdf>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-1.pdf  used on input line 314.
+(pdftex.def)             Requested size: 440.65189pt x 295.10626pt.
+[3]
+<Ass_3_files/figure-latex/4-2.pdf, id=53, 446.66875pt x 295.1025pt>
+File: Ass_3_files/figure-latex/4-2.pdf Graphic file (type pdf)
+<use Ass_3_files/figure-latex/4-2.pdf>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-2.pdf  used on input line 331.
+(pdftex.def)             Requested size: 446.67445pt x 295.10626pt.
+[4 <./Ass_3_files/figure-latex/4-1.pdf>]
+<Ass_3_files/figure-latex/4-3.pdf, id=66, 456.70625pt x 295.1025pt>
+File: Ass_3_files/figure-latex/4-3.pdf Graphic file (type pdf)
+<use Ass_3_files/figure-latex/4-3.pdf>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-3.pdf  used on input line 339.
+(pdftex.def)             Requested size: 456.71208pt x 295.10626pt.
+[5 <./Ass_3_files/figure-latex/4-2.pdf> <./Ass_3_files/figure-latex/4-3.pdf>]
+<Ass_3_files/figure-latex/4-4.pdf, id=87, 443.6575pt x 295.1025pt>
+File: Ass_3_files/figure-latex/4-4.pdf Graphic file (type pdf)
+<use Ass_3_files/figure-latex/4-4.pdf>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-4.pdf  used on input line 347.
+(pdftex.def)             Requested size: 443.6564pt x 295.10176pt.
+<Ass_3_files/figure-latex/4-5.pdf, id=88, 450.68375pt x 295.1025pt>
+File: Ass_3_files/figure-latex/4-5.pdf Graphic file (type pdf)
+<use Ass_3_files/figure-latex/4-5.pdf>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-5.pdf  used on input line 374.
+(pdftex.def)             Requested size: 450.6895pt x 295.10626pt.
+[6 <./Ass_3_files/figure-latex/4-4.pdf>] [7 <./Ass_3_files/figure-latex/4-5.pdf>]
+<Ass_3_files/figure-latex/4-6.pdf, id=114, 440.64626pt x 295.1025pt>
+File: Ass_3_files/figure-latex/4-6.pdf Graphic file (type pdf)
+<use Ass_3_files/figure-latex/4-6.pdf>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-6.pdf  used on input line 449.
+(pdftex.def)             Requested size: 440.65189pt x 295.10626pt.
+[8 <./Ass_3_files/figure-latex/4-6.pdf>] [9] [10] (./Ass_3.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `Ass_3.out' has not changed.
-(rerunfilecheck)             Checksum: FCECA40910AD01C795C4E8C92E6807B7;216.
+(rerunfilecheck)             Checksum: 119A7B0C53A31560FA197C713FD743C0;270.
  ) 
 Here is how much of TeX's memory you used:
- 12737 strings out of 480236
- 200502 string characters out of 5894951
- 511892 words of memory out of 5000000
- 30429 multiletter control sequences out of 15000+600000
+ 12769 strings out of 480236
+ 201532 string characters out of 5894951
+ 500886 words of memory out of 5000000
+ 30452 multiletter control sequences out of 15000+600000
  512962 words of font info for 70 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,9n,63p,487b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on Ass_3.pdf (6 pages, 217796 bytes).
+ 60i,7n,63p,487b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
+Output written on Ass_3.pdf (10 pages, 242945 bytes).
 PDF statistics:
- 135 PDF objects out of 1000 (max. 8388607)
- 99 compressed objects within 1 object stream
- 16 named destinations out of 1000 (max. 500000)
- 43 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 196 PDF objects out of 1000 (max. 8388607)
+ 143 compressed objects within 2 object streams
+ 21 named destinations out of 1000 (max. 500000)
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
 
