@@ -5,87 +5,7 @@ date: \today
 output:
   pdf_document
 ---
-```{ INFO, include=FALSE, results='asis', echo=FALSE}
-     Code Book for New Jersey-Pennsylvania Data Set
 
-Note: there are 410 observations in the data set
-
-            Column Location
- Name:       Start    End    Format     Explanation
-ƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒ
-SHEET           1        3     3.0   sheet number (unique store id)
-CHAIN           5        5     1.0   chain 1=bk; 2=kfc; 3=roys; 4=wendys
-CO_OWNED        7        7     1.0   1 if company owned
-STATE           9        9     1.0   1 if NJ; 0 if Pa                      
-
-Dummies for location:
-SOUTHJ         11       11     1.0   1 if in southern NJ
-CENTRALJ       13       13     1.0   1 if in central NJ
-NORTHJ         15       15     1.0   1 if in northern NJ
-PA1            17       17     1.0   1 if in PA, northeast suburbs of Phila
-PA2            19       19     1.0   1 if in PA, Easton etc
-SHORE          21       21     1.0   1 if on NJ shore
-
-First Interview
-NCALLS         23       24     2.0   number of call-backs*
-EMPFT          26       30     5.2   # full-time employees
-EMPPT          32       36     5.2   # part-time employees
-NMGRS          38       42     5.2   # managers/ass't managers
-WAGE_ST        44       48     5.2   starting wage ($/hr)
-INCTIME        50       54     5.1   months to usual first raise
-FIRSTINC       56       60     5.2   usual amount of first raise ($/hr)
-BONUS          62       62     1.0   1 if cash bounty for new workers
-PCTAFF         64       68     5.1   % employees affected by new minimum
-MEALS          70       70     1.0   free/reduced price code (See below)
-OPEN           72       76     5.2   hour of opening
-HRSOPEN        78       82     5.2   number hrs open per day
-PSODA          84       88     5.2   price of medium soda, including tax
-PFRY           90       94     5.2   price of small fries, including tax
-PENTREE        96      100     5.2   price of entree, including tax
-NREGS         102      103     2.0   number of cash registers in store
-NREGS11       105      106     2.0   number of registers open at 11:00 am
-
-Second Interview
-TYPE2         108      108     1.0   type 2nd interview 1=phone; 2=personal
-STATUS2       110      110     1.0   status of second interview: see below
-DATE2         112      117     6.0   date of second interview MMDDYY format
-NCALLS2       119      120     2.0   number of call-backs*
-EMPFT2        122      126     5.2   # full-time employees
-EMPPT2        128      132     5.2   # part-time employees
-NMGRS2        134      138     5.2   # managers/ass't managers
-WAGE_ST2      140      144     5.2   starting wage ($/hr)
-INCTIME2      146      150     5.1   months to usual first raise
-FIRSTIN2      152      156     5.2   usual amount of first raise ($/hr)
-SPECIAL2      158      158     1.0   1 if special program for new workers
-MEALS2        160      160     1.0   free/reduced price code (See below)
-OPEN2R        162      166     5.2   hour of opening
-HRSOPEN2      168      172     5.2   number hrs open per day
-PSODA2        174      178     5.2   price of medium soda, including tax
-PFRY2         180      184     5.2   price of small fries, including tax
-PENTREE2      186      190     5.2   price of entree, including tax
-NREGS2        192      193     2.0   number of cash registers in store
-NREGS112      195      196     2.0   number of registers open at 11:00 am
-
-Codes:
-
-Free/reduced Meal Variable:
-0 = none
-1 = free meals
-2 = reduced price meals
-3 = both free and reduced price meals
-
-
-Second Interview Status
-0 = refused second interview (count = 1)
-1 = answered 2nd interview (count = 399)
-2 = closed for renovations (count = 2)
-3 = closed "permanently" (count = 6)
-4 = closed for highway construction (count = 1)
-5 = closed due to Mall fire (count = 1)
-
-
-*Note: number of call-backs = 0 if contacted on first call
-```
 
 
 ```{r setup, include=FALSE}
@@ -96,6 +16,7 @@ pacman::p_load(ggplot2, stargazer, lmtest, plm,
                MatchIt, EnvStats
                )
 
+
 #set tidy code
 knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 65), tidy = TRUE)
 ```
@@ -105,10 +26,8 @@ data <- read.dta("CardKrueger.dta")
 data <- subset(data, !is.na(EMPFT)&!is.na(EMPFT2)&!is.na(EMPFT2)&!is.na(EMPPT2)&!is.na(NMGRS)&!is.na(NMGRS2))      
 ```
 
-# Q1 (Julian)
-
-
-```{r 1}
+# Q1
+```{r 1, echo=FALSE}
 NJemp1a <- mean(data$EMPFT[data$STATE==1])+0.5*mean(data$EMPPT[data$STATE==1])+mean(data$NMGRS[data$STATE==1])
 NJemp2a <- mean(data$EMPFT2[data$STATE==1])+0.5*mean(data$EMPPT2[data$STATE==1])+mean(data$NMGRS2[data$STATE==1])
 PAemp1a <- mean(data$EMPFT[data$STATE==0])+0.5*mean(data$EMPPT[data$STATE==0])+mean(data$NMGRS[data$STATE==0])
@@ -116,7 +35,6 @@ PAemp2a <- mean(data$EMPFT2[data$STATE==0])+0.5*mean(data$EMPPT2[data$STATE==0])
 EffNJa <- NJemp2a-NJemp1a
 EffPAa <- PAemp2a-PAemp1a
 DiffDiffa <- EffNJa - EffPAa
-DiffDiffa
 data1 <- subset(data, STATUS2==1)
 
 NJemp1b <- mean(data1$EMPFT[data1$STATE==1])+0.5*mean(data1$EMPPT[data1$STATE==1])+mean(data1$NMGRS[data1$STATE==1])
@@ -129,7 +47,6 @@ PAemp2b <- mean(data1$EMPFT2[data1$STATE==0])+0.5*mean(data1$EMPPT2[data1$STATE=
 EffNJb <- NJemp2b-NJemp1b
 EffPAb <- PAemp2b-PAemp1b
 DiffDiffb <- EffNJb - EffPAb
-DiffDiffb
 data <- data1
 ```
 
@@ -137,9 +54,9 @@ The mean number of employees in NJ are $`r round(NJemp1a, 2)`$ and $`r round(NJe
 
 # Q2
 
-We first estimate the model with a dummy variable indicating whether the restaurant is in New Jersey (D = 1) or in Pennsylvenia (D = 0). We get an treatment effect of 2.722 which means that thanks to the minimum wage increase around 2.7 workers more will be employed in a restaurant in New Jersey. The effect is significant at 5\%. 
+We first estimate the model with a dummy variable indicating whether the restaurant is in New Jersey (D = 1) or in Pennsylvenia (D = 0). We get an treatment effect of 2.722 which means that thanks to the minimum wage increase around $2.7$ more workers will be employed in a restaurant in New Jersey. The effect is significant at $5\%$. 
 
-Next, we want to include controls. However, in our view it is not sensible the include solely characteristics from the first wave. Instead, it would make more sense to include the difference of the characterstics as a control. To explain our point, suppose the model
+Next, we want to include controls. However, in our view it is not sensible the include solely characteristics from the first wave. Instead, it would make more sense to include the difference of the characteristics as a control. To explain our point, suppose the model
 $$
 E_{igt}=\gamma_g+\lambda_t+\delta NJ_{igt}+ \epsilon_{igt},
 $$
@@ -147,14 +64,22 @@ $$
 where $E_{igt}$ is the amount of workers employed at restaurant $i$, in state $g$, and time $t$. $\gamma_g$ are state specific effects, $\lambda_t$ are time effects, $NJ_i$ is a dummy variable indicating whether the restaurant is in New Jersey. We have two states, $g = \{NJ,PA\}$ and two time periods, $t = \{0,1\}$, so we can rewrite the model
 $$
 E_{i,NJ,0} = \gamma_{NJ} + \lambda_0 + \epsilon_{i,NJ,0}\\
+$$
+$$
 E_{i,NJ,1} = \gamma_{NJ} + \lambda_1 +  \delta + \epsilon_{i,NJ,1}\\
+$$
+$$
 E_{i,PA,0} = \gamma_{PA} + \lambda_0 +  \epsilon_{i,PA,0}\\
+$$
+$$
 E_{i,PA,1} = \gamma_{PA} + \lambda_1 +  \epsilon_{i,PA,1}
 $$
 Next, we take the differences
 $$
-E_{i,NJ,1} - E_{i,NJ,0} = \lambda_1 - \lambda 0 + \delta + \epsilon_{i,NJ,1} - \epsilon_{i,NJ,0}\\
-E_{i,PA,1} - E_{i,PA,0} = \lambda_1 - \lambda 0 + \epsilon_{i,PA,1} - \epsilon_{i,PA,0}\\
+E_{i,NJ,1} - E_{i,NJ,0} = \lambda_1 - \lambda 0 + \delta + \epsilon_{i,NJ,1} - \epsilon_{i,NJ,0}
+$$
+$$
+E_{i,PA,1} - E_{i,PA,0} = \lambda_1 - \lambda 0 + \epsilon_{i,PA,1} - \epsilon_{i,PA,0}
 $$
 where we define $\alpha = \lambda_1 - \lambda_0$. These two equations we can rewrite into our model $E_{1i} - E_{0i} = \alpha + \delta NJ_i + U_i$. Now suppose we add level controls, $X_{igt}$ to our model
 
@@ -162,17 +87,15 @@ $$
 E_{igt}=\gamma_g+\lambda_t+\delta NJ_{igt}+ \beta X_{igt} +  \epsilon_{igt},
 $$
 Again, we rewrite the model. At this point the question arises whether we add controls for both time periods or only the first one. While it makes sense to add controls to reduce biases, we do not think it would make sense to add the controls only at $t=0$.
-$$
-E_{i,NJ,0} = \gamma_{NJ} + \lambda_0 + \beta X_{i,NJ,0} + \epsilon_{i,NJ,0}\\
+$$E_{i,NJ,0} = \gamma_{NJ} + \lambda_0 + \beta X_{i,NJ,0} + \epsilon_{i,NJ,0}\\
 E_{i,NJ,1} = \gamma_{NJ} + \lambda_1 +  \delta +  \beta X_{i,NJ,1} + \epsilon_{i,NJ,1}\\
 E_{i,PA,0} = \gamma_{PA} + \lambda_0 +   \beta X_{i,PA,0} + \epsilon_{i,PA,0}\\
-E_{i,PA,1} = \gamma_{PA} + \lambda_1 +   \beta X_{i,PA,1} + \epsilon_{i,PA,1}
-$$
+E_{i,PA,1} = \gamma_{PA} + \lambda_1 +   \beta X_{i,PA,1} + \epsilon_{i,PA,1}$$
 However, if we use this model setup, we would not include level variables but the difference of the variable for the control. This makes also conceptually sense. Suppose a free meal policy has a significant effect on the amount of employed workers, and we want to know whether there are other variables that affect the difference in employment between $t=0$, and $t=1$.  Now, we have several restaurants that change their meal policies, which affects the employment rate. Assuming such a situation it would make no sense to include only the variable meal at $t=0$ but the difference between $t=1$ and $t=0$ as otherwise we do not measure the effect of the change in the meal policy on the change of the amount of workers.\\
 
-As an example, we include the difference in the hours of opening. We can see, that the state effect slightly decreases but the significance stays at 5\%. Moreover, the difference in hours of opening has a negative effect on the difference in employment, which means that when a restaurant opens up 1 hour later than in the previous period, then around 1.7 workers less will be employed at the restaurant. The estimation is significant at 1\%. A variable that we can include and that has not to be differenced is the amount of employees affected by the minimum (as it is zero in the second period). It is sensible to include this control as the amount of affected employees potentially can impact the decision of managers on how many persons to employ after the policy is introduced. When we include only the amount of affected employees as a control, the state effect decreases to 2.466 but is still significant at 5\%. Furthermore, the number of affected employees has a slightly positive effect with 0.034 and is significant at 5\%. The adjusted $R^2$ is hight than in the basismodel, and the residual standard error slightly lower. One can also combine both controls into one model. In this case the state effect decreases to 2.452 and is still siginificant at 5\%. The controls are significant and of similar dimension as in the previous models. The adjsuted $R^2$ is higher than in the previous models, and the residual standard error lower. However, as the question asked to estimate a model using controls from the first survey, we will stick to the model including the number of affected employees as a control variable. All other variables should be included as a difference when being used as a control variable. 
+As an example, we include the difference in the hours of opening. We can see, that the state effect slightly decreases but the significance stays at $5\%$. Moreover, the difference in hours of opening has a negative effect on the difference in employment, which means that when a restaurant opens up 1 hour later than in the previous period, then around 1.7 workers less will be employed at the restaurant. The estimation is significant at $1\%$. A variable that we can include and that has not to be differenced is the amount of employees affected by the minimum (as it is zero in the second period). It is sensible to include this control as the amount of affected employees potentially can impact the decision of managers on how many persons to employ after the policy is introduced. When we include only the amount of affected employees as a control, the state effect decreases to 2.466 but is still significant at $5\%.$ Furthermore, the number of affected employees has a slightly positive effect with 0.034 and is significant at$ 5\%$. The adjusted $R^2$ is higher than in the baseline model, and the residual standard error slightly lower. One can also combine both controls into one model. In this case the state effect decreases to 2.452 and is still siginificant at $5\%.$ The controls are significant and of similar dimension as in the previous models. The adjsuted $R^2$ is higher than in the previous models, and the residual standard error lower. However, as the question asked to estimate a model using controls from the first survey, we will stick to the model including the number of affected employees as a control variable. All other variables should be included as a difference when being used as a control variable. 
 
-```{r 2}
+```{r 2, results='asis'}
 data$EMP1 <- data$EMPFT+0.5*data$EMPPT+data$NMGRS
 data$EMP2 <- data$EMPFT2+0.5*data$EMPPT2+data$NMGRS2
 data$difE <- data$EMP2-data$EMP1
@@ -182,15 +105,16 @@ m2 <- lm(difE ~ STATE + difOpen, data)
 m3 <- lm(difE ~ STATE + PCTAFF, data)
 m4 <- lm(difE ~ STATE + difOpen + PCTAFF, data)
 dif_eff1 <-m1$coefficients[2]
-stargazer(m1, m2,m3,m4, column.labels = c("", "Controls"),type = "text",
+stargazer(m1, m2,m3,m4, column.labels = c("", "Controls"),type = "latex",
           title = "Minimum Wage", header = FALSE, label = "tab:reg1")
 ```
 
 # Q3
 
-Media_control1 is the median for Pennsylvenia and Media_trat1 is the median for New Jersey. We ignore the location dummies as they naturally results in significant differences among the states. For the other variables, we can see a significant difference in full-time employees (EMPFT) in the first survey year as restaurants in New Jersey seem to have more employees than restaurants in Pennsylvenie according to the median statistics. However, an insightful aspect is that in the second survey the median in Pennsylvenia is considerable higher (EMPFT = 1.02, EMPFT2 = 7.78) which is why the difference between the states with respect to the number of full-time employees is not significant anymore in the second survey. Another significant difference between the states can be observed for the usual amount of first raise (\$/hr) in the second survey which is higher in New Jersey than in Pennsylvenia. Comparing it to the first survey, we can see that before the usual amount of first raise (\$/hr) was higher in both states but it decreased more for Pennsylvenia. Generally, participating restaurants in Pennsylvenia have substantial higher prices across all products in both survey. Moreover, the starting wage in the second survey is significantly higher for New Jersey. However, this does not only results from an increase of the Median for restaurants in New Jersey but also from a decrease of around 0.03 for restaurants in Pennsylvenia.\\
+Media_control1 is the median for Pennsylvania and Media_trat1 is the median for New Jersey. We ignore the location dummies as they naturally results in significant differences among the states. For the other variables, we can see a significant difference in full-time employees (EMPFT) in the first survey year as restaurants in New Jersey seem to have more employees than restaurants in Pennsylvania according to the median statistics. However, an insightful aspect is that in the second survey the median in Pennsylvania is considerable higher (EMPFT = 1.02, EMPFT2 = 7.78) which is why the difference between the states with respect to the number of full-time employees is not significant anymore in the second survey. Another significant difference between the states can be observed for the usual amount of first raise (\$/hr) in the second survey which is higher in New Jersey than in Pennsylvania. Comparing it to the first survey, we can see that before the usual amount of first raise (\$/hr) was higher in both states but it decreased more for Pennsylvania. Generally, participating restaurants in Pennsylvania have substantial higher prices across all products in both survey. Moreover, the starting wage in the second survey is significantly higher for New Jersey. However, this does not only result from an increase of the median for restaurants in New Jersey but also from a decrease of around 0.03 for restaurants in Pennsylvania.\\
 
-All in all, there are considerable differences between the states. However, not every significant difference can be observed in both surveys. Especially, when it comes to the starting wage and the amount of first raise, where significant differences between the states can be only observed for the second survey, we must consider that they result from the state effects. Nonetheless, one aspects that worries us is the significant difference in full-time employees that is lost in the second survey. Moreover, it seems that there are considerable price differences across the states but it is not clear whether it is due to general price differences between the states or due to more expensive restaurants answering the survey in Pennsylvenia. 
+All in all, there are considerable differences between the states. However, not every significant difference can be observed in both surveys. Especially, when it comes to the starting wage and the amount of first raise, where significant differences between the states can be only observed for the second survey, we must consider that they result from the state effects. Nonetheless, one aspects that worries us is the significant difference in Full time employees in Pennsylvania. This means the gap in full-time employees shrinks massively in the second the second survey. Moreover, it seems that there are considerable price differences across the states but it is not clear whether it is due to general price differences between the states or due to more expensive restaurants answering the survey in Pennsylvania.
+
 ```{r 3}
 data3 <- subset(data, select = -c(STATUS2))
 balance <- balance_table(data3, "STATE")
@@ -198,14 +122,72 @@ knitr::kable(balance, caption = "Balance Table")
 ```
 
 
-# Q4 (Julian)
+# Q4
+
 To estimate the propensity score we run a probit model estimating the probability of being in a given state. Table \ref{tab:probit} calculates the probability of each restaurant being in NJ as opposed to Pa. 
 
-We do not include location dummies in the estimation as these affect the treatment but not the outcome variable, hence they can be used as instruments for istance. We use all variables that jointly determine the treatment and the outcome. 
+We do not include location dummies in the estimation as these affect the treatment but not the outcome variable, hence they can be used as instruments, for instance. We use all variables that plausibly jointly determine the treatment and the outcome. Those that we have not included were another proxy for the same thing. We have included measures for the size of the store, the time they are open, which chain it is and a variety of financial measures. 
 
-```{r 4}
-dataNJ <- subset(data, STATE==1)
-dataPA <- subset(data, STATE==0)
+We include the graphs for the different control variables to see how much common support they have. They seem to have very good overlap in most of the variables. 
+
+```{r 4, results='asis'}
+
+probit <- glm(STATE ~ HRSOPEN + INCTIME + NREGS+ CHAIN + CO_OWNED + WAGE_ST + BONUS + MEALS+ PSODA, family = binomial(link = "probit"), data = data)
+data$zscore <- predict(probit, data)
+data$prop <- pnorm(data$zscore)
+
+stargazer(probit, column.labels = c(""), type = "latex",
+          title = "Minimum Wage", header = FALSE, label = "tab:probit")
+
+bal.plot(data, treat = data$STATE, var.name = "prop")
+```
+
+
+# Q5
+
+Using the nearest neighbour method, we use the propensity score to match the restaurants and estimate the ATET. The graph shows that the there is an overlapping support between the propensity scores of the matched restaurants. We then estimate two models, one for the employment rate before and one after the introduction of the policy. The estimation shows that the state effect for the employment rate before the policy is around 2.932 and significant at $10\%$. Being a restaurant in New Jersey therefore increases the amount of employed workers by almost 3. The state effect for the employment rate after the policy is slightly higher with 3.424 and is significant at $5\%$. 
+
+```{r, echo=TRUE, include=TRUE}
+
+data5 <- subset(data, !is.na(HRSOPEN)&!is.na(INCTIME)&!is.na(NREGS)&!is.na(prop))
+prop <- matchit(STATE ~ HRSOPEN + INCTIME + NREGS+ CHAIN + CO_OWNED + WAGE_ST + BONUS + MEALS+ PSODA, data = data5, method = "nearest", distance = data5$prop, ratio = 1, replace = TRUE)
+# it does not use the proposenty score "distance = prs_df$pr_score" / distance ="glm"
+bal.tab(prop, disp.subclass = TRUE)
+```
+
+```{r, results='asis'}
+data_m <- match.data(prop)
+bal.plot(data_m, treat = data_m$STATE, var.name = "prop")
+
+r1_m <- lm(EMP1 ~ STATE, data_m, weights = data_m$weights)
+r2_m <- lm(EMP2 ~ STATE, data_m, weights = data_m$weights)
+
+```
+
+# Q6 
+
+Next, we estimate the ATET on the change in employment in the restaurants. This basically equates to the difference between the two previous models in question 5. Now the average treatment effect on the treated decreases to 0.492. Furthermore, it is not significant. 
+
+```{r , results='asis'}
+r3_m <- lm(difE ~  STATE, data_m, weights = data_m$weights)
+stargazer(r1_m, r2_m, r3_m, column.labels = c(""), type = "latex",
+          title = "Treatment Effect", header = FALSE, label = "tab:reg1")
+```
+
+ 
+# Q7
+
+```{r, echo=FALSE}
+EffWprop <- sum(data_m$prop*(((data_m$STATE*data_m$difE)/data_m$prop) - ((1-data_m$STATE)*data_m$difE/(1-data_m$prop))))/sum(data_m$prop)
+```
+Using the formula for the ATET from the slides we get a treatment effect of `r round(EffWprop,2)`. This estimate is smaller in magnitude than the estimate using just the propensity score matching.
+
+$$
+A T E T=\frac{\sum_{i=1}^n \hat{p}\left(X_i\right)\left(\frac{D_i Y_i}{\hat{p}\left(X_i\right)}-\frac{\left(1-D_i\right) Y_i}{1-\hat{p}\left(X_i\right)}\right)}{\sum_{i=1}^n \hat{p}\left(X_i\right)}
+$$
+
+Below are all the graphs testing visually for common support.
+```{r}
 bal.plot(data, treat = data$STATE, var.name = "EMP1")
 bal.plot(data, treat = data$STATE, var.name = "EMPFT")
 bal.plot(data, treat = data$STATE, var.name = "HRSOPEN")
@@ -217,53 +199,4 @@ bal.plot(data, treat = data$STATE, var.name = "WAGE_ST")
 bal.plot(data, treat = data$STATE, var.name = "BONUS")
 bal.plot(data, treat = data$STATE, var.name = "MEALS")
 bal.plot(data, treat = data$STATE, var.name = "PSODA")
-
-probit <- glm(STATE ~ HRSOPEN + INCTIME + NREGS+ CHAIN + CO_OWNED + WAGE_ST + BONUS + MEALS+ PSODA, family = binomial(link = "probit"), data = data)
-data$prop <- predict(probit, type = "response", data)
-stargazer(probit, column.labels = c("", ""),type = "text",
-          title = "Minimum Wage", header = FALSE, label = "tab:probit")
-
-dataNJ <- subset(data, STATE==1)
-dataPA <- subset(data, STATE==0)
-bal.plot(data, treat = data$STATE, var.name = "prop")
 ```
-
-
-# Q5
-
-Using the nearest neighbour method, we use the propensity score to match the restaurants and estimate the ATET. The graph shows that the there is an overlapping support between the propensity scores of the matched restaurants. We then estimate two models, one for the employment rate before and one after the introduction of the policy. The estimation shows that the state effect for the employment rate before the policy is around 2.932 and significant at 10\%. Being a restaurant in New Jersey therefore increases the amount of employed workers by almost 3. The state effect for the employment rate after the policy is slightly higher with 3.424 and is signficant at 5\%. 
-
-```{r }
-# https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.665.635&rep=rep1&type=pdf
-data5 <- subset(data, !is.na(HRSOPEN)&!is.na(INCTIME)&!is.na(NREGS)&!is.na(prop))
-prop <- matchit(STATE ~ HRSOPEN + INCTIME + NREGS+ CHAIN + CO_OWNED + WAGE_ST + BONUS + MEALS+ PSODA, data = data5, method = "nearest", distance = data5$prop, ratio = 1, replace = TRUE)
-# it does not use the proposenty score "distance = prs_df$pr_score" / distance ="glm"
-summary(prop)
-bal.tab(prop, disp.subclass = TRUE)
-
-
-data_m <- match.data(prop)
-bal.plot(data_m, treat = data_m$STATE, var.name = "prop")
-
-weight = prop$weights
-r1_m <- lm(EMP1 ~ STATE, data_m, weights = data_m$weights)
-r2_m <- lm(EMP2 ~ STATE, data_m, weights = data_m$weights)
-r1_m
-r2_m
-```
-
-# Q6 
-
-Next, we estimate the ATET on the change in employment in the restaurants. This basically equates to the difference between the two previous models in question 5. Now the average treatment effect on the treated decreases to 0.492. Furthermore, it is not significant. 
-
-```{r }
-# https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.665.635&rep=rep1&type=pdf
-r3_m <- lm(difE ~  STATE, data_m, weights = data_m$weights)
-stargazer(r1_m, r2_m, r3_m, column.labels = c(""), type = "text",
-          title = "Treatment Effect", header = FALSE, label = "tab:reg1")
-```
-# Q7 (Julian)
-```{r}
-sum(data_m$prop*(((data_m$STATE*data_m$difE)/data_m$prop) - ((1-data_m$STATE)*data_m$difE/(1-data_m$prop))))/sum(data_m$prop)
-```
-
