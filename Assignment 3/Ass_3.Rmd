@@ -133,35 +133,54 @@ DiffDiffb
 data <- data1
 ```
 
-# Q2 (Anna)
-ARE WE SUPPOSED TO LOOK ONLY INTO THE RESTAURANTS THAT ANSWERED IN BOTH WAVES?
-As we are looking at the difference in each shop we restrict the sample to those who responded in both waves. The effect of the minimum wage in the simple diff-in-diff is "dif_eff1". Once we add controls for the amount of time the shop is open and a proxy for its capacity (the number of registers) the magnitude of effect increases slightly to $"dif_eff2"$. CAN WE CONTROL FOR THE NUMBER OF EMPLOYEES IMPACTED BY THE WAGE SHARE? OR IS THAT A MECHANISM??
+# Q2
 
-In our view, most variables collected in the first wave could serve as potential controls as they either impact the manager's decision to hire/fire workers, or the decision of workers becoming an employee of the restaurant or leaving it. However, as soon as we include all variables as controls, the explainability of the model (Adjusted $R^2$) decreases relative to the basis model. The only regressor that is significant is the starting wage. Hence, we start first with the starting wage as the second regressor. The third model has a higher adjusted $R^2$. The state effect is significant at 5\% but lower by around 0.5 relative to the basismodel. The starting wage is significant at 5\%, an increase in 1 Dollar per hour, increases the employment by around 2.6 workers. 
+We first estimate the model with a dummy variable indicating whether the restaurant is in New Jersey (D = 1) or in Pennsylvenia (D = 0). We get an treatment effect of 2.722 which means that thanks to the minimum wage increase around 2.7 workers more will be employed in a restaurant in New Jersey. The effect is significant at 5\%. 
 
-In the next steps, we add step by step variables and keep the regressors that increase the explainability of the model. We end up with two models. One includes the hour of opening. The adjusted $R^2$ is higher relative to the basismodel as well as the first model. With a state effect of $-2.108$, the effect is lower than in the previous models. Furthermore, the sigificance is now at 10\%. Last but not least, we add the number of employees affected by the new minimum. In comparison to the other variables, it might be not perfectly evident why one should control for this variable. However, assuming that manager's know who of their employees will be affected by the new policy, they may have to take the executive decision to fire employees to balance out the increase in costs. And indeed, as soon as we add this variable, the adjusted $R^2$ increases relative to the previous models. The state effect is still significant at 10\% but a little bit lower with $-2.035$. The number of affected employees and the hour of opening are both significant at 10\% and have a negative effect on the change of employment. The starting wage is not significant anymore. 
+Next, we want to include controls. However, in our view it is not sensible the include solely characteristics from the first wave. Instead, it would make more sense to include the difference of the characterstics as a control. To explain our point, suppose the model
+$$
+E_{igt}=\gamma_g+\lambda_t+\delta NJ_{igt}+ \epsilon_{igt},
+$$
 
-OPEN           72       76     5.2   hour of opening
-HRSOPEN        78       82     5.2   number hrs open per day
+where $E_{igt}$ is the amount of workers employed at restaurant $i$, in state $g$, and time $t$. $\gamma_g$ are state specific effects, $\lambda_t$ are time effects, $NJ_i$ is a dummy variable indicating whether the restaurant is in New Jersey. We have two states, $g = \{NJ,PA\}$ and two time periods, $t = \{0,1\}$, so we can rewrite the model
+$$
+E_{i,NJ,0} = \gamma_{NJ} + \lambda_0 + \epsilon_{i,NJ,0}\\
+E_{i,NJ,1} = \gamma_{NJ} + \lambda_1 +  \delta + \epsilon_{i,NJ,1}\\
+E_{i,PA,0} = \gamma_{PA} + \lambda_0 +  \epsilon_{i,PA,0}\\
+E_{i,PA,1} = \gamma_{PA} + \lambda_1 +  \epsilon_{i,PA,1}
+$$
+Next, we take the differences
+$$
+E_{i,NJ,1} - E_{i,NJ,0} = \lambda_1 - \lambda 0 + \delta + \epsilon_{i,NJ,1} - \epsilon_{i,NJ,0}\\
+E_{i,PA,1} - E_{i,PA,0} = \lambda_1 - \lambda 0 + \epsilon_{i,PA,1} - \epsilon_{i,PA,0}\\
+$$
+where we define $\alpha = \lambda_1 - \lambda_0$. These two equations we can rewrite into our model $E_{1i} - E_{0i} = \alpha + \delta NJ_i + U_i$. Now suppose we add level controls, $X_{igt}$ to our model
 
-NREGS         102      103     2.0   number of cash registers in store
-NREGS11       105      106     2.0   number of registers open at 11:00 am
+$$
+E_{igt}=\gamma_g+\lambda_t+\delta NJ_{igt}+ \beta X_{igt} +  \epsilon_{igt},
+$$
+Again, we rewrite the model. At this point the question arises whether we add controls for both time periods or only the first one. While it makes sense to add controls to reduce biases, we do not think it would make sense to add the controls only at $t=0$.
+$$
+E_{i,NJ,0} = \gamma_{NJ} + \lambda_0 + \beta X_{i,NJ,0} + \epsilon_{i,NJ,0}\\
+E_{i,NJ,1} = \gamma_{NJ} + \lambda_1 +  \delta +  \beta X_{i,NJ,1} + \epsilon_{i,NJ,1}\\
+E_{i,PA,0} = \gamma_{PA} + \lambda_0 +   \beta X_{i,PA,0} + \epsilon_{i,PA,0}\\
+E_{i,PA,1} = \gamma_{PA} + \lambda_1 +   \beta X_{i,PA,1} + \epsilon_{i,PA,1}
+$$
+However, if we use this model setup, we would not include level variables but the difference of the variable for the control. This makes also conceptually sense. Suppose a free meal policy has a significant effect on the amount of employed workers, and we want to know whether there are other variables that affect the difference in employment between $t=0$, and $t=1$.  Now, we have several restaurants that change their meal policies, which affects the employment rate. Assuming such a situation it would make no sense to include only the variable meal at $t=0$ but the difference between $t=1$ and $t=0$ as otherwise we do not measure the effect of the change in the meal policy on the change of the amount of workers.\\
+
+As an example, we include the difference in the hours of opening. We can see, that the state effect slightly decreases but the significance stays at 5\%. Moreover, the difference in hours of opening has a negative effect on the difference in employment, which means that when a restaurant opens up 1 hour later than in the previous period, then around 1.7 workers less will be employed at the restaurant. The estimation is significant at 1\%. A variable that we can include and that has not to be differenced is the amount of employees affected by the minimum (as it is zero in the second period). It is sensible to include this control as the amount of affected employees potentially can impact the decision of managers on how many persons to employ after the policy is introduced. When we include only the amount of affected employees as a control, the state effect decreases to 2.466 but is still significant at 5\%. Furthermore, the number of affected employees has a slightly positive effect with 0.034 and is significant at 5\%. The adjusted $R^2$ is hight than in the basismodel, and the residual standard error slightly lower. One can also combine both controls into one model. In this case the state effect decreases to 2.452 and is still siginificant at 5\%. The controls are significant and of similar dimension as in the previous models. The adjsuted $R^2$ is higher than in the previous models, and the residual standard error lower. However, as the question asked to estimate a model using controls from the first survey, we will stick to the model including the number of affected employees as a control variable. All other variables should be included as a difference when being used as a control variable. 
 
 ```{r 2}
 data$EMP1 <- data$EMPFT+0.5*data$EMPPT+data$NMGRS
 data$EMP2 <- data$EMPFT2+0.5*data$EMPPT2+data$NMGRS2
-data$difE <- data$EMP1-data$EMP2
+data$difE <- data$EMP2-data$EMP1
+data$difOpen <- data$OPEN2R - data$OPEN
 m1 <- lm(difE ~ STATE, data)
-m2 <- lm(difE ~ STATE+ HRSOPEN*STATE + HRSOPEN, data) # potential interaction effects!
-m3 <- lm(difE ~ STATE+ OPEN*STATE + OPEN, data)
-m4 <- lm(difE ~ STATE+ NREGS*STATE + NREGS, data)
-m5 <- lm(difE ~ STATE+ NREGS11*STATE + NREGS11, data)
-m6 <- lm(difE ~ STATE+ WAGE_ST, data)
-m7 <- lm(difE ~ STATE+ WAGE_ST+OPEN, data)
-m8 <- lm(difE ~ STATE+ WAGE_ST+OPEN+PCTAFF, data)
+m2 <- lm(difE ~ STATE + difOpen, data)
+m3 <- lm(difE ~ STATE + PCTAFF, data)
+m4 <- lm(difE ~ STATE + difOpen + PCTAFF, data)
 dif_eff1 <-m1$coefficients[2]
-dif_eff2 <-m2$coefficients[2]
-stargazer(m1, m2,m3,m4,m5,m6, m7, m8, column.labels = c("", "Controls"),type = "text",
+stargazer(m1, m2,m3,m4, column.labels = c("", "Controls"),type = "text",
           title = "Minimum Wage", header = FALSE, label = "tab:reg1")
 ```
 
@@ -197,8 +216,6 @@ bal.plot(data, treat = data$STATE, var.name = "BONUS")
 bal.plot(data, treat = data$STATE, var.name = "MEALS")
 bal.plot(data, treat = data$STATE, var.name = "PSODA")
 
-
-# PCTAFF????
 probit <- glm(STATE ~ HRSOPEN + INCTIME + NREGS+ CHAIN + CO_OWNED + WAGE_ST + BONUS + MEALS+ PSODA, family = binomial(link = "probit"), data = data)
 data$prop <- predict(probit, type = "response", data)
 stargazer(probit, column.labels = c("", ""),type = "text",
@@ -210,11 +227,12 @@ bal.plot(data, treat = data$STATE, var.name = "prop")
 ```
 
 
-# Q5 (Anna)
+# Q5
 
-https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.665.635&rep=rep1&type=pdf
+Using the nearest neighbour method, we use the propensity score to match the restaurants and estimate the ATET. The graph shows that the there is an overlapping support between the propensity scores of the matched restaurants. We then estimate two models, one for the employment rate before and one after the introduction of the policy. The estimation shows that the state effect for the employment rate before the policy is around 2.932 and significant at 10\%. Being a restaurant in New Jersey therefore increases the amount of employed workers by almost 3. The state effect for the employment rate after the policy is slightly higher with 3.424 and is signficant at 5\%. 
 
 ```{r }
+# https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.665.635&rep=rep1&type=pdf
 data5 <- subset(data, !is.na(HRSOPEN)&!is.na(INCTIME)&!is.na(NREGS)&!is.na(prop))
 prop <- matchit(STATE ~ HRSOPEN + INCTIME + NREGS+ CHAIN + CO_OWNED + WAGE_ST + BONUS + MEALS+ PSODA, data = data5, method = "nearest", distance = data5$prop, ratio = 1, replace = TRUE)
 # it does not use the proposenty score "distance = prs_df$pr_score" / distance ="glm"
@@ -232,11 +250,12 @@ r1_m
 r2_m
 ```
 
-# Q6 (Anna)
+# Q6 
 
-https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.665.635&rep=rep1&type=pdf
+Next, we estimate the ATET on the change in employment in the restaurants. This basically equates to the difference between the two previous models in question 5. Now the average treatment effect on the treated decreases to 0.492. Furthermore, it is not significant. 
 
 ```{r }
+# https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.665.635&rep=rep1&type=pdf
 r3_m <- lm(difE ~  STATE, data_m, weights = data_m$weights)
 stargazer(r1_m, r2_m, r3_m, column.labels = c(""), type = "text",
           title = "Treatment Effect", header = FALSE, label = "tab:reg1")
