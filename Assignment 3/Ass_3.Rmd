@@ -261,7 +261,9 @@ stargazer(r1_m, r2_m, r3_m, column.labels = c(""), type = "text",
           title = "Treatment Effect", header = FALSE, label = "tab:reg1")
 ```
 # Q7 (Julian)
+
 ```{r}
-sum(data_m$prop*(((data_m$STATE*data_m$difE)/data_m$prop) - ((1-data_m$STATE)*data_m$difE/(1-data_m$prop))))/sum(data_m$prop)
+weightedATET = sum(data_m$prop*(((data_m$STATE*data_m$difE)/data_m$prop) - ((1-data_m$STATE)*data_m$difE/(1-data_m$prop))))/sum(data_m$prop)
+weightedATET
 ```
 
