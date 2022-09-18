@@ -106,7 +106,7 @@ data <- subset(data, !is.na(EMPFT)&!is.na(EMPFT2)&!is.na(EMPFT2)&!is.na(EMPPT2)&
 ```
 
 # Q1 (Julian)
-The mean number of employees in NJ are 'r tostring(NJemp1)' and "NJemp2" for the first and second wave respectively. In Pa the employee numbers were, respectively "PAemp1" and "PAemp2" for the first and second wave. The naive treatment effect is then "EffNJa" for NJ and "EFFPAa" for Pa. If we adjust the data set to only include those who participated both times this effect changes to "EffNJb" for NJ and "EFFPAb" for Pa. The treatment effect thus improves in both states. 
+
 
 ```{r 1}
 NJemp1a <- mean(data$EMPFT[data$STATE==1])+0.5*mean(data$EMPPT[data$STATE==1])+mean(data$NMGRS[data$STATE==1])
@@ -132,6 +132,8 @@ DiffDiffb <- EffNJb - EffPAb
 DiffDiffb
 data <- data1
 ```
+
+The mean number of employees in NJ are $`r round(NJemp1a, 2)`$ and $`r round(NJemp2a, 2)`$ for the first and second wave respectively. In Pa the employee numbers were, respectively $`r round(PAemp1a, 2)`$  and $`r round(PAemp2a, 2)`$ for the first and second wave. The naive treatment effect is then $`r round(EffNJa, 2)`$ for NJ and $`r round(EffPAa, 2)`$ for Pa. Taking the diff-in-diff estimator of this we get $`r round(DiffDiffa, 2)`$. If we adjust the data set to only include those who participated both times this effect changes to $`r round(DiffDiffb)`$, broken down into an effect of $`r round(EffNJb, 2)`$ for NJ and $`r round(EffPAb, 2)`$ for Pa. The treatment effect is thus very similar, but decreases slightly in magnitude. 
 
 # Q2
 

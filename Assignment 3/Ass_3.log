@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2022.3.21)  16 SEP 2022 13:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2022.3.21)  18 SEP 2022 13:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -570,73 +570,225 @@ Overfull \hbox (0.79182pt too wide) in paragraph at lines 160--174
 
 [1
 
-{/Users/julian/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (2018.73775pt too wide) in paragraph at lines 220--220
-[]\T1/lmtt/m/n/10 The mean number of employees in NJ are 'r tostring(NJemp1)' and "NJemp2" for the first and second wave respectively. In Pa the employee numbers were, respectively "PAemp1" and "PAemp2" for the first and second wave. The naive treatment effect is then "EffNJa" for NJ and "EFFPAa" for Pa. If we adjust the data set to only include those who participated both times this effect changes to "EffNJb" for NJ and "EFFPAb" for Pa. The treatment effect thus improves in both states.[] 
+{/Users/julian/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Overfull \hbox (7.33812pt too wide) detected at line 284
+\OML/lmm/m/it/10 E[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 ^^M[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^U[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^O[][] E[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 ^^M[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^U[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^N \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^O[][] E[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 ^^M[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^U[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^O[][] E[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 ^^M[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^U[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^O[]
  []
 
-[2]
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 294.
-(/Users/julian/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
-File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
 
-LaTeX Warning: Reference `tab:probit' on page 3 undefined on input line 302.
+Overfull \hbox (191.56609pt too wide) detected at line 302
+\OML/lmm/m/it/10 E[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 ^^M[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^U[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^LX[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^O[][] E[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 ^^M[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^U[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^N \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^LX[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^O[][] E[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 ^^M[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^U[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^LX[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^O[][] E[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 ^^M[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^U[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^LX[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^O[]
+ []
 
-<Ass_3_files/figure-latex/4-1.pdf, id=43, 440.64626pt x 295.1025pt>
+[3]
+Overfull \hbox (123.49326pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## ==============================================================================================================[] 
+ []
+
+
+Overfull \hbox (123.49326pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ##                     ------------------------------------------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (70.99341pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ##                              (1)                   (2)                    (3)                    (4)[] 
+ []
+
+
+Overfull \hbox (123.49326pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## --------------------------------------------------------------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (81.49338pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## STATE                      2.722**               2.689**                2.466**                2.452**[] 
+ []
+
+
+Overfull \hbox (81.49338pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ##                            (1.153)               (1.146)                (1.184)                (1.175)[] 
+ []
+
+
+Overfull \hbox (86.74336pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## difOpen                                         -1.682***                                     -1.685***[] 
+ []
+
+
+Overfull \hbox (81.49338pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ##                                                  (0.631)                                       (0.632)[] 
+ []
+
+
+Overfull \hbox (81.49338pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## PCTAFF                                                                  0.034**                0.033**[] 
+ []
+
+
+Overfull \hbox (81.49338pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ##                                                                         (0.014)                (0.014)[] 
+ []
+
+
+Overfull \hbox (86.74336pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## Constant                  -2.064**               -1.939*               -3.597***              -3.425***[] 
+ []
+
+
+Overfull \hbox (81.49338pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ##                            (1.034)               (1.028)                (1.219)                (1.211)[] 
+ []
+
+
+Overfull \hbox (123.49326pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## --------------------------------------------------------------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (70.99341pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## Observations                 378                   377                    339                    338[] 
+ []
+
+
+Overfull \hbox (76.2434pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## R2                          0.015                 0.033                  0.032                  0.052[] 
+ []
+
+
+Overfull \hbox (76.2434pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## Adjusted R2                 0.012                 0.028                  0.026                  0.044[] 
+ []
+
+
+Overfull \hbox (107.7433pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## Residual Std. Error   8.897 (df = 376)       8.837 (df = 374)       8.768 (df = 336)       8.701 (df = 334)[] 
+ []
+
+
+Overfull \hbox (123.49326pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## F Statistic         5.570** (df = 1; 376) 6.357*** (df = 2; 374) 5.547*** (df = 2; 336) 6.115*** (df = 3; 334)[] 
+ []
+
+
+Overfull \hbox (123.49326pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## ==============================================================================================================[] 
+ []
+
+
+Overfull \hbox (123.49326pt too wide) in paragraph at lines 386--386
+[]\T1/lmtt/m/n/10 ## Note:                                                                              *p<0.1; **p<0.05; ***p<0.01[] 
+ []
+
+[4]
+
+LaTeX Warning: Reference `tab:probit' on page 5 undefined on input line 545.
+
+<Ass_3_files/figure-latex/4-1.pdf, id=58, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/4-1.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/4-1.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/4-1.pdf  used on input line 314.
-(pdftex.def)             Requested size: 440.65189pt x 295.10626pt.
-[3]
-<Ass_3_files/figure-latex/4-2.pdf, id=53, 446.66875pt x 295.1025pt>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-1.pdf  used on input line 566.
+(pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
+[5] [6pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.568 \begin{Shaded}
+                    ]
+<Ass_3_files/figure-latex/4-2.pdf, id=70, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/4-2.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/4-2.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/4-2.pdf  used on input line 331.
-(pdftex.def)             Requested size: 446.67445pt x 295.10626pt.
-[4 <./Ass_3_files/figure-latex/4-1.pdf>]
-<Ass_3_files/figure-latex/4-3.pdf, id=66, 456.70625pt x 295.1025pt>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-2.pdf  used on input line 579.
+(pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
+[7 <./Ass_3_files/figure-latex/4-1.pdf>]
+<Ass_3_files/figure-latex/4-3.pdf, id=87, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/4-3.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/4-3.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/4-3.pdf  used on input line 339.
-(pdftex.def)             Requested size: 456.71208pt x 295.10626pt.
-[5 <./Ass_3_files/figure-latex/4-2.pdf> <./Ass_3_files/figure-latex/4-3.pdf>]
-<Ass_3_files/figure-latex/4-4.pdf, id=87, 443.6575pt x 295.1025pt>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-3.pdf  used on input line 592.
+(pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
+[8 <./Ass_3_files/figure-latex/4-2.pdf>]
+<Ass_3_files/figure-latex/4-4.pdf, id=103, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/4-4.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/4-4.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/4-4.pdf  used on input line 347.
-(pdftex.def)             Requested size: 443.6564pt x 295.10176pt.
-<Ass_3_files/figure-latex/4-5.pdf, id=88, 450.68375pt x 295.1025pt>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-4.pdf  used on input line 605.
+(pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
+[9 <./Ass_3_files/figure-latex/4-3.pdf>]
+<Ass_3_files/figure-latex/4-5.pdf, id=119, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/4-5.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/4-5.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/4-5.pdf  used on input line 374.
-(pdftex.def)             Requested size: 450.6895pt x 295.10626pt.
-[6 <./Ass_3_files/figure-latex/4-4.pdf>] [7 <./Ass_3_files/figure-latex/4-5.pdf>]
-<Ass_3_files/figure-latex/4-6.pdf, id=114, 440.64626pt x 295.1025pt>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-5.pdf  used on input line 618.
+(pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
+[10 <./Ass_3_files/figure-latex/4-4.pdf>]
+<Ass_3_files/figure-latex/4-6.pdf, id=135, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/4-6.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/4-6.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/4-6.pdf  used on input line 449.
-(pdftex.def)             Requested size: 440.65189pt x 295.10626pt.
-[8 <./Ass_3_files/figure-latex/4-6.pdf>] [9] [10] (./Ass_3.aux)
+Package pdftex.def Info: Ass_3_files/figure-latex/4-6.pdf  used on input line 631.
+(pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
+[11 <./Ass_3_files/figure-latex/4-5.pdf>]
+<Ass_3_files/figure-latex/4-7.pdf, id=151, 453.695pt x 315.1775pt>
+File: Ass_3_files/figure-latex/4-7.pdf Graphic file (type pdf)
+<use Ass_3_files/figure-latex/4-7.pdf>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-7.pdf  used on input line 644.
+(pdftex.def)             Requested size: 453.6939pt x 315.17673pt.
+[12 <./Ass_3_files/figure-latex/4-6.pdf>]
+<Ass_3_files/figure-latex/4-8.pdf, id=168, 453.695pt x 315.1775pt>
+File: Ass_3_files/figure-latex/4-8.pdf Graphic file (type pdf)
+<use Ass_3_files/figure-latex/4-8.pdf>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-8.pdf  used on input line 657.
+(pdftex.def)             Requested size: 453.6939pt x 315.17673pt.
+[13 <./Ass_3_files/figure-latex/4-7.pdf>]
+<Ass_3_files/figure-latex/4-9.pdf, id=184, 453.695pt x 313.17pt>
+File: Ass_3_files/figure-latex/4-9.pdf Graphic file (type pdf)
+<use Ass_3_files/figure-latex/4-9.pdf>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-9.pdf  used on input line 670.
+(pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
+[14 <./Ass_3_files/figure-latex/4-8.pdf>]
+<Ass_3_files/figure-latex/4-10.pdf, id=200, 453.695pt x 313.17pt>
+File: Ass_3_files/figure-latex/4-10.pdf Graphic file (type pdf)
+<use Ass_3_files/figure-latex/4-10.pdf>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-10.pdf  used on input line 683.
+(pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
+[15 <./Ass_3_files/figure-latex/4-9.pdf>]
+<Ass_3_files/figure-latex/4-11.pdf, id=215, 453.695pt x 313.17pt>
+File: Ass_3_files/figure-latex/4-11.pdf Graphic file (type pdf)
+<use Ass_3_files/figure-latex/4-11.pdf>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-11.pdf  used on input line 696.
+(pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
+[16 <./Ass_3_files/figure-latex/4-10.pdf>] [17 <./Ass_3_files/figure-latex/4-11.pdf>]
+<Ass_3_files/figure-latex/4-12.pdf, id=246, 453.695pt x 315.1775pt>
+File: Ass_3_files/figure-latex/4-12.pdf Graphic file (type pdf)
+<use Ass_3_files/figure-latex/4-12.pdf>
+Package pdftex.def Info: Ass_3_files/figure-latex/4-12.pdf  used on input line 769.
+(pdftex.def)             Requested size: 453.6939pt x 315.17673pt.
+[18]
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 793.
+(/Users/julian/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [19 <./Ass_3_files/figure-latex/4-12.pdf>] [20]
+<Ass_3_files/figure-latex/unnamed-chunk-1-1.pdf, id=274, 453.695pt x 315.1775pt>
+File: Ass_3_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type pdf)
+<use Ass_3_files/figure-latex/unnamed-chunk-1-1.pdf>
+Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-1-1.pdf  used on input line 911.
+(pdftex.def)             Requested size: 453.6939pt x 315.17673pt.
+[21] [22 <./Ass_3_files/figure-latex/unnamed-chunk-1-1.pdf>] [23] (./Ass_3.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `Ass_3.out' has not changed.
-(rerunfilecheck)             Checksum: 119A7B0C53A31560FA197C713FD743C0;270.
+(rerunfilecheck)             Checksum: 2B56C04A0362D7E483AA63ED752C07EE;432.
  ) 
 Here is how much of TeX's memory you used:
- 12769 strings out of 480236
- 201532 string characters out of 5894951
- 500886 words of memory out of 5000000
- 30452 multiletter control sequences out of 15000+600000
+ 12839 strings out of 480236
+ 203615 string characters out of 5894951
+ 513037 words of memory out of 5000000
+ 30499 multiletter control sequences out of 15000+600000
  512962 words of font info for 70 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,7n,63p,487b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on Ass_3.pdf (10 pages, 242945 bytes).
+ 60i,9n,63p,423b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
+Output written on Ass_3.pdf (23 pages, 414150 bytes).
 PDF statistics:
- 196 PDF objects out of 1000 (max. 8388607)
- 143 compressed objects within 2 object streams
- 21 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 371 PDF objects out of 1000 (max. 8388607)
+ 279 compressed objects within 3 object streams
+ 37 named destinations out of 1000 (max. 500000)
+ 114 words of extra memory for PDF output out of 10000 (max. 10000000)
 
