@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.18)  18 SEP 2022 16:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.18)  18 SEP 2022 21:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -559,19 +559,14 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 130.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 130.
-
-Overfull \hbox (191.56609pt too wide) detected at line 187
-\OML/lmm/m/it/10 E[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 ^^M[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^U[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^LX[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^O[][] E[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 ^^M[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^U[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^N \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^LX[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^O[][] E[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 ^^M[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^U[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^LX[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^O[][] E[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 ^^M[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^U[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^LX[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 ^^O[]
- []
-
 [1
 
 {/Users/julian/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 227.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 230.
 (/Users/julian/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (70.06529pt too wide) in paragraph at lines 245--276
+Overfull \hbox (70.06529pt too wide) in paragraph at lines 248--279
  [][] 
  []
 
@@ -579,102 +574,102 @@ Overfull \hbox (70.06529pt too wide) in paragraph at lines 245--276
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.439 W
+l.442 W
        e do not include location dummies in the estimation as these affect the] [4
 pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.439 W
+l.442 W
        e do not include location dummies in the estimation as these affect the]
 <Ass_3_files/figure-latex/4-1.pdf, id=68, 453.695pt x 315.1775pt>
 File: Ass_3_files/figure-latex/4-1.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/4-1.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/4-1.pdf  used on input line 526.
+Package pdftex.def Info: Ass_3_files/figure-latex/4-1.pdf  used on input line 529.
 (pdftex.def)             Requested size: 453.6939pt x 315.17673pt.
 [5 <./Ass_3_files/figure-latex/4-1.pdf>] [6
 pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.541 
+l.544 
       ]
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 549.
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 552.
 (/Users/julian/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 <Ass_3_files/figure-latex/unnamed-chunk-2-1.pdf, id=90, 453.695pt x 315.1775pt>
 File: Ass_3_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/unnamed-chunk-2-1.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-2-1.pdf  used on input line 595.
+Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-2-1.pdf  used on input line 598.
 (pdftex.def)             Requested size: 453.6939pt x 315.17673pt.
 [7] [8 <./Ass_3_files/figure-latex/unnamed-chunk-2-1.pdf>]
 <Ass_3_files/figure-latex/unnamed-chunk-5-1.pdf, id=117, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/unnamed-chunk-5-1.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-1.pdf  used on input line 674.
+Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-1.pdf  used on input line 677.
 (pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
 [9
 pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.676 \begin{Shaded}
+l.679 \begin{Shaded}
                      <./Ass_3_files/figure-latex/unnamed-chunk-5-1.pdf>]
 <Ass_3_files/figure-latex/unnamed-chunk-5-2.pdf, id=134, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/unnamed-chunk-5-2.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/unnamed-chunk-5-2.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-2.pdf  used on input line 687.
+Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-2.pdf  used on input line 690.
 (pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
 <Ass_3_files/figure-latex/unnamed-chunk-5-3.pdf, id=135, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/unnamed-chunk-5-3.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/unnamed-chunk-5-3.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-3.pdf  used on input line 700.
+Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-3.pdf  used on input line 703.
 (pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
 [10 <./Ass_3_files/figure-latex/unnamed-chunk-5-2.pdf>]
 <Ass_3_files/figure-latex/unnamed-chunk-5-4.pdf, id=152, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/unnamed-chunk-5-4.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/unnamed-chunk-5-4.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-4.pdf  used on input line 713.
+Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-4.pdf  used on input line 716.
 (pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
 [11 <./Ass_3_files/figure-latex/unnamed-chunk-5-3.pdf>]
 <Ass_3_files/figure-latex/unnamed-chunk-5-5.pdf, id=168, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/unnamed-chunk-5-5.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/unnamed-chunk-5-5.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-5.pdf  used on input line 726.
+Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-5.pdf  used on input line 729.
 (pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
 [12 <./Ass_3_files/figure-latex/unnamed-chunk-5-4.pdf>]
 <Ass_3_files/figure-latex/unnamed-chunk-5-6.pdf, id=184, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/unnamed-chunk-5-6.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/unnamed-chunk-5-6.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-6.pdf  used on input line 739.
+Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-6.pdf  used on input line 742.
 (pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
 [13 <./Ass_3_files/figure-latex/unnamed-chunk-5-5.pdf>]
 <Ass_3_files/figure-latex/unnamed-chunk-5-7.pdf, id=201, 453.695pt x 315.1775pt>
 File: Ass_3_files/figure-latex/unnamed-chunk-5-7.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/unnamed-chunk-5-7.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-7.pdf  used on input line 752.
+Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-7.pdf  used on input line 755.
 (pdftex.def)             Requested size: 453.6939pt x 315.17673pt.
 [14 <./Ass_3_files/figure-latex/unnamed-chunk-5-6.pdf>]
 <Ass_3_files/figure-latex/unnamed-chunk-5-8.pdf, id=217, 453.695pt x 315.1775pt>
 File: Ass_3_files/figure-latex/unnamed-chunk-5-8.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/unnamed-chunk-5-8.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-8.pdf  used on input line 765.
+Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-8.pdf  used on input line 768.
 (pdftex.def)             Requested size: 453.6939pt x 315.17673pt.
 [15 <./Ass_3_files/figure-latex/unnamed-chunk-5-7.pdf>]
 <Ass_3_files/figure-latex/unnamed-chunk-5-9.pdf, id=232, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/unnamed-chunk-5-9.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/unnamed-chunk-5-9.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-9.pdf  used on input line 778.
+Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-9.pdf  used on input line 781.
 (pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
 [16 <./Ass_3_files/figure-latex/unnamed-chunk-5-8.pdf>]
 <Ass_3_files/figure-latex/unnamed-chunk-5-10.pdf, id=248, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/unnamed-chunk-5-10.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/unnamed-chunk-5-10.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-10.pdf  used on input line 791.
+Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-10.pdf  used on input line 794.
 (pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
 [17 <./Ass_3_files/figure-latex/unnamed-chunk-5-9.pdf>]
 <Ass_3_files/figure-latex/unnamed-chunk-5-11.pdf, id=263, 453.695pt x 313.17pt>
 File: Ass_3_files/figure-latex/unnamed-chunk-5-11.pdf Graphic file (type pdf)
 <use Ass_3_files/figure-latex/unnamed-chunk-5-11.pdf>
-Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-11.pdf  used on input line 804.
+Package pdftex.def Info: Ass_3_files/figure-latex/unnamed-chunk-5-11.pdf  used on input line 807.
 (pdftex.def)             Requested size: 453.6939pt x 313.16922pt.
 [18 <./Ass_3_files/figure-latex/unnamed-chunk-5-10.pdf>] [19 <./Ass_3_files/figure-latex/unnamed-chunk-5-11.pdf>] (./Ass_3.aux)
 
@@ -692,7 +687,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  72i,11n,77p,346b,457s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/julian/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></Users/julian/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on Ass_3.pdf (19 pages, 407709 bytes).
+Output written on Ass_3.pdf (19 pages, 407722 bytes).
 PDF statistics:
  377 PDF objects out of 1000 (max. 8388607)
  284 compressed objects within 3 object streams

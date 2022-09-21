@@ -87,10 +87,17 @@ $$
 E_{igt}=\gamma_g+\lambda_t+\delta NJ_{igt}+ \beta X_{igt} +  \epsilon_{igt},
 $$
 Again, we rewrite the model. At this point the question arises whether we add controls for both time periods or only the first one. While it makes sense to add controls to reduce biases, we do not think it would make sense to add the controls only at $t=0$.
-$$E_{i,NJ,0} = \gamma_{NJ} + \lambda_0 + \beta X_{i,NJ,0} + \epsilon_{i,NJ,0}\\
-E_{i,NJ,1} = \gamma_{NJ} + \lambda_1 +  \delta +  \beta X_{i,NJ,1} + \epsilon_{i,NJ,1}\\
-E_{i,PA,0} = \gamma_{PA} + \lambda_0 +   \beta X_{i,PA,0} + \epsilon_{i,PA,0}\\
-E_{i,PA,1} = \gamma_{PA} + \lambda_1 +   \beta X_{i,PA,1} + \epsilon_{i,PA,1}$$
+$$E_{i,NJ,0} = \gamma_{NJ} + \lambda_0 + \beta X_{i,NJ,0} + \epsilon_{i,NJ,0}
+$$
+$$
+E_{i,NJ,1} = \gamma_{NJ} + \lambda_1 +  \delta +  \beta X_{i,NJ,1} + \epsilon_{i,NJ,1}
+$$
+$$
+E_{i,PA,0} = \gamma_{PA} + \lambda_0 +   \beta X_{i,PA,0} + \epsilon_{i,PA,0}
+$$
+$$
+E_{i,PA,1} = \gamma_{PA} + \lambda_1 +   \beta X_{i,PA,1} + \epsilon_{i,PA,1}
+$$
 However, if we use this model setup, we would not include level variables but the difference of the variable for the control. This makes also conceptually sense. Suppose a free meal policy has a significant effect on the amount of employed workers, and we want to know whether there are other variables that affect the difference in employment between $t=0$, and $t=1$.  Now, we have several restaurants that change their meal policies, which affects the employment rate. Assuming such a situation it would make no sense to include only the variable meal at $t=0$ but the difference between $t=1$ and $t=0$ as otherwise we do not measure the effect of the change in the meal policy on the change of the amount of workers.\\
 
 As an example, we include the difference in the hours of opening. We can see, that the state effect slightly decreases but the significance stays at $5\%$. Moreover, the difference in hours of opening has a negative effect on the difference in employment, which means that when a restaurant opens up 1 hour later than in the previous period, then around 1.7 workers less will be employed at the restaurant. The estimation is significant at $1\%$. A variable that we can include and that has not to be differenced is the amount of employees affected by the minimum (as it is zero in the second period). It is sensible to include this control as the amount of affected employees potentially can impact the decision of managers on how many persons to employ after the policy is introduced. When we include only the amount of affected employees as a control, the state effect decreases to 2.466 but is still significant at $5\%.$ Furthermore, the number of affected employees has a slightly positive effect with 0.034 and is significant at$ 5\%$. The adjusted $R^2$ is higher than in the baseline model, and the residual standard error slightly lower. One can also combine both controls into one model. In this case the state effect decreases to 2.452 and is still siginificant at $5\%.$ The controls are significant and of similar dimension as in the previous models. The adjsuted $R^2$ is higher than in the previous models, and the residual standard error lower. However, as the question asked to estimate a model using controls from the first survey, we will stick to the model including the number of affected employees as a control variable. All other variables should be included as a difference when being used as a control variable. 
