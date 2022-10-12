@@ -148,18 +148,118 @@ streg gender public special city classize teachnr schsize hours if !protest, dis
 * PWC
 * https://www.stata.com/manuals/ststsplit.pdf
 * create new id
-gen str_schoolid = string(int(schoolid),"%01.0f") // %02.0f because 'country' is two digits
-gen str_teachid = string(int(teachid),"%01.0f")
-egen uniqueid = concat(str_schoolid str_teachid)
-destring uniqueid, replace
 
+gen id = _n
 
-stset splength, id(uniqueid) failure(dest)
+stset splength, id(id) failure(dest)
 stsplit sickdur, at(2 30 90) 
 
 generate dur1 = 1 if sickdur == 2
+replace dur1 = 0 if missing(dur1)
 generate dur2 = 1 if sickdur == 30
+replace dur2 = 0 if missing(dur2)
 generate dur3 = 1 if sickdur == 90
+replace dur3 = 0 if missing(dur3)
 
-* does not work yet
-streg gender public special city classize teachnr schsize hours dur1 dur2, distribution(exponential) cl(schoolid) nohr
+streg gender public special classize teachnr schsize hours dur1 dur2 dur3, distribution(exponential) cl(schoolid) nohr
+stcurve, survival
+
+stsplit sickdur2, at(2 20 30 40 50 60 70 90 110 130 150 170 190 210 230 250 270 290 310 330) 
+generate duur1 = 1 if sickdur2 == 2
+replace duur1 = 0 if missing(duur1)
+generate duur2 = 1 if sickdur2 == 20
+replace duur2 = 0 if missing(duur2)
+generate duur3 = 1 if sickdur2 == 30
+replace duur3 = 0 if missing(duur3)
+generate duur4 = 1 if sickdur2 == 40
+replace duur4 = 0 if missing(duur4)
+generate duur5 = 1 if sickdur2 == 50
+replace duur5 = 0 if missing(duur5)
+generate duur6 = 1 if sickdur2 == 60
+replace duur6 = 0 if missing(duur6)
+generate duur7 = 1 if sickdur2 == 70
+replace duur7 = 0 if missing(duur7)
+generate duur8 = 1 if sickdur2 == 90
+replace duur8 = 0 if missing(duur8)
+generate duur9 = 1 if sickdur2 == 110
+replace duur9 = 0 if missing(duur9)
+generate duur10 = 1 if sickdur2 == 130
+replace duur10 = 0 if missing(duur10)
+generate duur11 = 1 if sickdur2 == 150
+replace duur11 = 0 if missing(duur11)
+generate duur12 = 1 if sickdur2 == 170
+replace duur12 = 0 if missing(duur12)
+generate duur13 = 1 if sickdur2 == 190
+replace duur13 = 0 if missing(duur13)
+generate duur14 = 1 if sickdur2 == 210
+replace duur14 = 0 if missing(duur14)
+generate duur15 = 1 if sickdur2 == 230
+replace duur15 = 0 if missing(duur15)
+generate duur16 = 1 if sickdur2 == 250
+replace duur16 = 0 if missing(duur16)
+generate duur17 = 1 if sickdur2 == 270
+replace duur17 = 0 if missing(duur17)
+generate duur18 = 1 if sickdur2 == 290
+replace duur18 = 0 if missing(duur18)
+generate duur19 = 1 if sickdur2 == 310
+replace duur19 = 0 if missing(duur19)
+generate duur20 = 1 if sickdur2 == 330
+replace duur20 = 0 if missing(duur20)
+
+streg gender public special classize teachnr schsize hours duur1 duur2 duur3 duur4 duur5 duur6 duur7 duur8 duur9 duur10 duur11 duur12 duur13 duur14 duur15 duur16 duur17 duur18 duur19 duur20, distribution(exponential) cl(schoolid) nohr
+stcurve, survival
+
+*** Question 3
+* Weibull and Exponential Models
+streg gender, distribution(exponential) frailty(gamma) cl(schoolid) nohr
+streg gender, distribution(weibull) frailty(gamma) cl(schoolid) nohr
+stcurve, hazard 
+
+streg gender public, distribution(exponential) frailty(gamma) cl(schoolid) nohr
+streg gender public, distribution(weibull) frailty(gamma) cl(schoolid) nohr
+stcurve, hazard 
+
+streg gender public special, distribution(exponential) frailty(gamma) cl(schoolid) nohr
+streg gender public special, distribution(weibull) frailty(gamma) cl(schoolid) nohr
+stcurve, hazard 
+
+streg gender public special classize, distribution(exponential) frailty(gamma) cl(schoolid) nohr
+streg gender public special classize, distribution(weibull) frailty(gamma) cl(schoolid) nohr
+stcurve, hazard 
+
+streg gender public special classize teachnr, distribution(exponential) frailty(gamma) cl(schoolid) nohr
+streg gender public special classize teachnr, distribution(weibull) frailty(gamma) cl(schoolid) nohr
+stcurve, hazard 
+
+streg gender public special classize teachnr schsize, distribution(exponential) frailty(gamma) cl(schoolid) nohr
+streg gender public special classize teachnr schsize, distribution(weibull) frailty(gamma) cl(schoolid) nohr
+stcurve, hazard 
+
+streg gender public special classize teachnr schsize hours, distribution(exponential) frailty(gamma) cl(schoolid) nohr
+streg gender public special classize teachnr schsize hours, distribution(weibull) frailty(gamma) cl(schoolid) nohr
+stcurve, hazard 
+
+* PWC
+streg gender public special classize teachnr schsize hours duur1 duur2 duur3 duur4 duur5 duur6 duur7 duur8 duur9 duur10 duur11 duur12 duur13 duur14 duur15 duur16 duur17 duur18 duur19 duur20, distribution(exponential) cl(schoolid) nohr
+stcurve, survival
+
+* Cox
+stcox gender public special classize teachnr schsize hours, cl(schoolid) basehc(haz1) nohr
+stcurve, hazard
+
+*** Question 4
+* Cox
+stcox gender public special classize teachnr schsize hours, cl(schoolid) basehc(haz1) nohr
+stcurve, hazard
+
+gen str_teachid = string(int(teachid),"%01.0f")
+destring str_teachid, replace
+
+* Stratified, School
+stcox gender public special classize teachnr schsize hours, strata(schoolid) cl(schoolid) basehc(haz2) nohr
+
+* Stratified, Teach
+stcox gender public special classize teachnr schsize hours, strata(str_teachid) cl(schoolid) basehc(haz3) nohr
+
+
+
