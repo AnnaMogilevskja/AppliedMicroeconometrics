@@ -104,61 +104,63 @@ stcox avgclass, nohr
 *** Question 2
 * Weibull and Exponential
 generate married = 1 if marstat == 2
+replace married = 0 if marstat != 2
 generate fixed = 1 if contract == 1
+replace fixed = 0 if contract 1= 1
 generate half = 1 if contract == 3
 generate city = 1 if urban > 3
 
-streg gender, distribution(exponential) cl(schoolid) nohr
-streg gender, distribution(weibull) cl(schoolid) nohr
+eststo e1: streg gender, distribution(exponential) cl(schoolid) nohr
+eststo w1: streg gender, distribution(weibull) cl(schoolid) nohr
 stcurve, hazard 
 
-streg gender public, distribution(exponential) cl(schoolid) nohr
-streg gender public, distribution(weibull) cl(schoolid) nohr
+eststo e2: streg gender married, distribution(exponential) cl(schoolid) nohr
+eststo w2: streg gender married, distribution(weibull) cl(schoolid) nohr
 stcurve, hazard 
 
-streg gender public special, distribution(exponential) cl(schoolid) nohr
-streg gender public special, distribution(weibull) cl(schoolid) nohr
+eststo e3: streg gender married hours lowgroup, distribution(exponential) cl(schoolid) nohr
+eststo w3: streg gender married hours lowgroup, distribution(weibull) cl(schoolid) nohr
 stcurve, hazard 
 
-streg gender public special , distribution(exponential) cl(schoolid) nohr
-streg gender public special , distribution(weibull) cl(schoolid) nohr
+eststo e4: streg gender married hours lowgroup classize schsize teachnr, distribution(exponential) cl(schoolid) nohr
+eststo w4: streg gender married hours lowgroup classize schsize teachnr, distribution(weibull) cl(schoolid) nohr
 stcurve, hazard 
 
-
-streg gender public special  classize, distribution(exponential) cl(schoolid) nohr
-streg gender public special  classize, distribution(weibull) cl(schoolid) nohr
+eststo e5: streg gender married hours lowgroup classize schsize teachnr public catholic protest special, distribution(exponential) cl(schoolid) nohr
+eststo w5: streg gender married hours lowgroup classize schsize teachnr public catholic protest special, distribution(weibull) cl(schoolid) nohr
 stcurve, hazard 
 
-streg gender public special  classize teachnr, distribution(exponential) cl(schoolid) nohr
-streg gender public special  classize teachnr, distribution(weibull) cl(schoolid) nohr
+eststo e6: streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban , distribution(exponential) cl(schoolid) nohr
+eststo w6: streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban , distribution(weibull) cl(schoolid) nohr
 stcurve, hazard 
 
-streg gender public special  classize teachnr schsize, distribution(exponential) cl(schoolid) nohr
-streg gender public special  classize teachnr schsize, distribution(weibull) cl(schoolid) nohr
+eststo e7: streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar, distribution(exponential) cl(schoolid) nohr
+eststo w7: streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar, distribution(weibull) cl(schoolid) nohr
 stcurve, hazard 
 
-streg gender public special  classize teachnr schsize hours, distribution(exponential) cl(schoolid) nohr
-streg gender public special  classize teachnr schsize hours, distribution(weibull) cl(schoolid) nohr
-stcurve, hazard 
+esttab e1 e2 e3 e4 e5 e6 e7 , compress   fonttbl("\f0\fnil Calibri") star( * 0.1 ** 0.05 *** 0.01) replace title(Exponential) label p
+
+esttab w1 w2 w3 w4 w5 w6 w7 , compress   fonttbl("\f0\fnil Calibri") star( * 0.1 ** 0.05 *** 0.01) replace title(Exponential) label p
 
 * Weibull for male/female
 * https://www.stata.com/manuals/ststreg.pdf
 
-streg public special  classize teachnr schsize hours if gender == 1, distribution(weibull)
-streg public special  classize teachnr schsize hours if gender == 2, distribution(weibull)
+eststo g1:streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar if gender == 1, distribution(weibull)
+eststo g2:streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban province merged avgfem avgage avgten avgmar if gender == 2, distribution(weibull)
 
 
 * Weibull other subgroups
 
-streg gender public  classize teachnr schsize hours if special, distribution(weibull)
-streg gender public  classize teachnr schsize hours if !special, distribution(weibull)
+eststo s1:streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar if special, distribution(weibull)
+eststo s2:streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban province merged avgfem avgage avgten avgmar if !special, distribution(weibull)
 
-streg gender public special  classize teachnr schsize hours if catholic, distribution(weibull)
-streg gender public special  classize teachnr schsize hours if !catholic, distribution(weibull)
+eststo c1:streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar if catholic, distribution(weibull)
+eststo c2:streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar if !catholic, distribution(weibull)
 
-streg gender public special  classize teachnr schsize hours if protest, distribution(weibull)
-streg gender public special  classize teachnr schsize hours if !protest, distribution(weibull)
+eststo p1:streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar if protest, distribution(weibull)
+eststo p2:streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar if !protest, distribution(weibull)
 
+esttab g1 g2 s1 s2 c1 c2 p1 p2 , compress   fonttbl("\f0\fnil Calibri") star( * 0.1 ** 0.05 *** 0.01) replace title(Exponential) label p mtitles("Male" "Female" "Sepcial" "Not Sepcial" "catholic""Not Catholic" "Protestant""Not Protestant")
 * PWC
 * https://www.stata.com/manuals/ststsplit.pdf
 * create new id
@@ -168,14 +170,14 @@ gen id = _n
 stset splength, id(id) failure(dest)
 stsplit sickdur, at(2 30 90) 
 
-generate dur1 = 1 if sickdur == 2
+*generate dur1 = 1 if sickdur == 2
 replace dur1 = 0 if missing(dur1)
-generate dur2 = 1 if sickdur == 30
+*generate dur2 = 1 if sickdur == 30
 replace dur2 = 0 if missing(dur2)
-generate dur3 = 1 if sickdur == 90
+*generate dur3 = 1 if sickdur == 90
 replace dur3 = 0 if missing(dur3)
 
-streg gender public special classize teachnr schsize hours dur1 dur2 dur3, distribution(exponential) cl(schoolid) nohr
+eststo q1: streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar i.sickdur, distribution(exponential) cl(schoolid) nohr
 stcurve, survival
 
 stsplit sickdur2, at(2 20 30 40 50 60 70 90 110 130 150 170 190 210 230 250 270 290 310 330) 
@@ -220,11 +222,13 @@ replace duur19 = 0 if missing(duur19)
 generate duur20 = 1 if sickdur2 == 330
 replace duur20 = 0 if missing(duur20)
 
-streg gender public special classize teachnr schsize hours duur1 duur2 duur3 duur4 duur5 duur6 duur7 duur8 duur9 duur10 duur11 duur12 duur13 duur14 duur15 duur16 duur17 duur18 duur19 duur20, distribution(exponential) cl(schoolid) nohr
+eststo q2:streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar i.sickdur2, distribution(exponential) cl(schoolid) nohr
 stcurve, survival
 
+esttab q1 q2 w7, compress   fonttbl("\f0\fnil Calibri") star( * 0.1 ** 0.05 *** 0.01) replace title(Exponential) label p mtitles("PWC - 3" "PWC - 20" "Weibull" )
+
 *** Question 3
-* Weibull and Exponential Models
+* Weibull and Exponential Models (ANNA)
 streg gender, distribution(exponential) frailty(gamma) cl(schoolid) nohr
 streg gender, distribution(weibull) frailty(gamma) cl(schoolid) nohr
 stcurve, hazard 
@@ -253,13 +257,52 @@ streg gender public special classize teachnr schsize hours, distribution(exponen
 streg gender public special classize teachnr schsize hours, distribution(weibull) frailty(gamma) cl(schoolid) nohr
 stcurve, hazard 
 
+
+*** Question 3
+* Weibull and Exponential Models (JULIAN)
+eststo ea1: streg gender, distribution(exponential) cl(schoolid) nohr frailty(gamma)
+eststo wa1: streg gender, distribution(weibull) cl(schoolid) nohr frailty(gamma)
+stcurve, hazard 
+
+eststo ea2: streg gender married, distribution(exponential) cl(schoolid) nohr frailty(gamma)
+eststo wa2: streg gender married, distribution(weibull) cl(schoolid) nohr frailty(gamma)
+stcurve, hazard 
+
+eststo ea3: streg gender married hours lowgroup, distribution(exponential) cl(schoolid) nohr frailty(gamma)
+eststo wa3: streg gender married hours lowgroup, distribution(weibull) cl(schoolid) nohr frailty(gamma)
+stcurve, hazard 
+
+eststo ea4: streg gender married hours lowgroup classize schsize teachnr, distribution(exponential) cl(schoolid) nohr frailty(gamma)
+eststo wa4: streg gender married hours lowgroup classize schsize teachnr, distribution(weibull) cl(schoolid) nohr frailty(gamma)
+stcurve, hazard 
+
+eststo ea5: streg gender married hours lowgroup classize schsize teachnr public catholic protest special, distribution(exponential) cl(schoolid) nohr frailty(gamma)
+eststo wa5: streg gender married hours lowgroup classize schsize teachnr public catholic protest special, distribution(weibull) cl(schoolid) nohr frailty(gamma)
+stcurve, hazard 
+
+eststo ea6: streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban , distribution(exponential) cl(schoolid) nohr frailty(gamma)
+eststo wa6: streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban , distribution(weibull) cl(schoolid) nohr frailty(gamma)
+stcurve, hazard 
+
+eststo ea7: streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar, distribution(exponential) cl(schoolid) nohr frailty(gamma)
+eststo wa7: streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar, distribution(weibull) cl(schoolid) nohr frailty(gamma)
+stcurve, hazard 
+
+esttab ea* , compress   fonttbl("\f0\fnil Calibri") star( * 0.1 ** 0.05 *** 0.01) replace title(Exponential - Unobserved) label p
+
+esttab wa* , compress   fonttbl("\f0\fnil Calibri") star( * 0.1 ** 0.05 *** 0.01) replace title(Weibull Unobserved) label p
+
+
 * PWC
-streg gender public special classize teachnr schsize hours duur1 duur2 duur3 duur4 duur5 duur6 duur7 duur8 duur9 duur10 duur11 duur12 duur13 duur14 duur15 duur16 duur17 duur18 duur19 duur20, distribution(exponential) cl(schoolid) nohr
+esttab c1: streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar i.sickdur2, distribution(exponential) cl(schoolid) nohr frailty(gamma)
 stcurve, survival
 
 * Cox
-stcox gender public special classize teachnr schsize hours, cl(schoolid) basehc(haz1) nohr
+esttab x2: stcox gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar, cl(schoolid) basehc(haz1) nohr
 stcurve, hazard
+
+esttab w7c1 c2 q2 w7, compress   fonttbl("\f0\fnil Calibri") star( * 0.1 ** 0.05 *** 0.01) replace title(Exponential) label p mtitles("PWC - 3" "PWC - 20" "Weibull" )
+
 
 *** Question 4
 * Cox
