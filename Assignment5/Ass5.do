@@ -1,7 +1,6 @@
 * Applied Microeconometrics - Assignment 5
 
-use "C:/Users/Anna/OneDrive/Dokumente/Tinbergen/TI_Year2/TI_2022_B1/AppliedMicroeconometrics/FlowSpells.dta"
-
+ use "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/FlowSpells.dta"
 * drop all that are not sick
 keep if sptype == 2
 
@@ -13,23 +12,40 @@ sts list
 
 * Plot the hazard rate and the survivor function
 sts graph, hazard 
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/Q1_hazard.png"
 sts graph
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/Q1_survivor.png"
+
 
 * Make separate plots for the first two weeks and for the first year
 sts graph, tmax(14)
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/Q1_survivor14.png"
 sts graph, tmax(365)
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/Q1_survivor365.png"
 sts graph, hazard tmax(14)
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/Q1_hazard14.png"
 sts graph, hazard tmax(365)
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/Q1_hazard365.png"
+
 
 * Plot the hazard by different subgroups
 sts graph, hazard by(gender)
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/gender.png"
 sts graph, hazard by(marstat)
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/marital.png"
 sts graph, hazard by(contract)
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/contract.png"
 sts graph, hazard by(public)
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/public.png"
 sts graph, hazard by(catholic)
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/catholic.png"
 sts graph, hazard by(protest)
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/protestant.png"
 sts graph, hazard by(special)
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/special.png"
 sts graph, hazard by(urban)
+graph export "/Users/julian/Documents/Current/Applied Microeconometrics/GitHub/Assignment5/urban.png"
+
 
 * Test whether the survival curves are the same for the different subgroups
 * https://stats.oarc.ucla.edu/stata/seminars/stata-survival/
@@ -104,46 +120,44 @@ streg gender public special, distribution(exponential) cl(schoolid) nohr
 streg gender public special, distribution(weibull) cl(schoolid) nohr
 stcurve, hazard 
 
-streg gender public special city, distribution(exponential) cl(schoolid) nohr
-streg gender public special city, distribution(weibull) cl(schoolid) nohr
+streg gender public special , distribution(exponential) cl(schoolid) nohr
+streg gender public special , distribution(weibull) cl(schoolid) nohr
 stcurve, hazard 
 
 
-streg gender public special city classize, distribution(exponential) cl(schoolid) nohr
-streg gender public special city classsize, distribution(weibull) cl(schoolid) nohr
+streg gender public special  classize, distribution(exponential) cl(schoolid) nohr
+streg gender public special  classize, distribution(weibull) cl(schoolid) nohr
 stcurve, hazard 
 
-streg gender public special city classize teachnr, distribution(exponential) cl(schoolid) nohr
-streg gender public special city classsize teachnr, distribution(weibull) cl(schoolid) nohr
+streg gender public special  classize teachnr, distribution(exponential) cl(schoolid) nohr
+streg gender public special  classize teachnr, distribution(weibull) cl(schoolid) nohr
 stcurve, hazard 
 
-streg gender public special city classize teachnr schsize, distribution(exponential) cl(schoolid) nohr
-streg gender public special city classize teachnr schsize, distribution(weibull) cl(schoolid) nohr
+streg gender public special  classize teachnr schsize, distribution(exponential) cl(schoolid) nohr
+streg gender public special  classize teachnr schsize, distribution(weibull) cl(schoolid) nohr
 stcurve, hazard 
 
-streg gender public special city classize teachnr schsize hours, distribution(exponential) cl(schoolid) nohr
-streg gender public special city classize teachnr schsize hours, distribution(weibull) cl(schoolid) nohr
+streg gender public special  classize teachnr schsize hours, distribution(exponential) cl(schoolid) nohr
+streg gender public special  classize teachnr schsize hours, distribution(weibull) cl(schoolid) nohr
 stcurve, hazard 
 
 * Weibull for male/female
 * https://www.stata.com/manuals/ststreg.pdf
 
-streg public special city classize teachnr schsize hours, distribution(weibull) ancillary(gender)
-
-streg public special city classize teachnr schsize hours if gender == 1, distribution(weibull)
-streg public special city classize teachnr schsize hours if gender == 2, distribution(weibull)
+streg public special  classize teachnr schsize hours if gender == 1, distribution(weibull)
+streg public special  classize teachnr schsize hours if gender == 2, distribution(weibull)
 
 
 * Weibull other subgroups
 
-streg gender public city classize teachnr schsize hours if special, distribution(weibull)
-streg gender public city classize teachnr schsize hours if !special, distribution(weibull)
+streg gender public  classize teachnr schsize hours if special, distribution(weibull)
+streg gender public  classize teachnr schsize hours if !special, distribution(weibull)
 
-streg gender public special city classize teachnr schsize hours if catholic, distribution(weibull)
-streg gender public special city classize teachnr schsize hours if !catholic, distribution(weibull)
+streg gender public special  classize teachnr schsize hours if catholic, distribution(weibull)
+streg gender public special  classize teachnr schsize hours if !catholic, distribution(weibull)
 
-streg gender public special city classize teachnr schsize hours if protest, distribution(weibull)
-streg gender public special city classize teachnr schsize hours if !protest, distribution(weibull)
+streg gender public special  classize teachnr schsize hours if protest, distribution(weibull)
+streg gender public special  classize teachnr schsize hours if !protest, distribution(weibull)
 
 * PWC
 * https://www.stata.com/manuals/ststsplit.pdf
@@ -249,8 +263,7 @@ stcurve, hazard
 
 *** Question 4
 * Cox
-stcox gender public special classize teachnr schsize hours, cl(schoolid) basehc(haz1) nohr
-stcurve, hazard
+
 
 gen str_teachid = string(int(teachid),"%01.0f")
 destring str_teachid, replace
@@ -262,4 +275,5 @@ stcox gender public special classize teachnr schsize hours, strata(schoolid) cl(
 stcox gender public special classize teachnr schsize hours, strata(str_teachid) cl(schoolid) basehc(haz3) nohr
 
 
+stcox gender public special classize teachnr schsize hours i.schoolid , cl(schoolid) basehc(haz4) nohr
 
