@@ -294,14 +294,14 @@ esttab wa* , compress   fonttbl("\f0\fnil Calibri") star( * 0.1 ** 0.05 *** 0.01
 
 
 * PWC
-esttab c1: streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar i.sickdur2, distribution(exponential) cl(schoolid) nohr frailty(gamma)
-stcurve, survival
+eststo c1: streg gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar i.sickdur2, distribution(exponential) cl(schoolid) nohr frailty(gamma)
+
 
 * Cox
-esttab x2: stcox gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar, cl(schoolid) basehc(haz1) nohr
-stcurve, hazard
+eststo x2: stcox gender married hours lowgroup classize schsize teachnr public catholic protest special urban  merged avgfem avgage avgten avgmar, cl(schoolid) basehc(haz1) nohr
 
-esttab w7c1 c2 q2 w7, compress   fonttbl("\f0\fnil Calibri") star( * 0.1 ** 0.05 *** 0.01) replace title(Exponential) label p mtitles("PWC - 3" "PWC - 20" "Weibull" )
+
+esttab w7 wa7 q2 c1 c2, compress   fonttbl("\f0\fnil Calibri") star( * 0.1 ** 0.05 *** 0.01) replace title(Exponential) label p mtitles("Weibull - None" "Weibull - Unobserved Heterogeneity" "PWC - _None" "PWC - Unobserved Heterogeneity" "Cox")
 
 
 *** Question 4
